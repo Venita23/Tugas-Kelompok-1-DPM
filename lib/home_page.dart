@@ -26,16 +26,25 @@ class HomePage extends StatelessWidget {
           children: [
             const Text("Beranda", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
-            TextField(
-              decoration: InputDecoration(
-                prefixIcon: const Icon(Icons.search),
-                hintText: "Search",
-                filled: true,
-                fillColor: Colors.pink[50],
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-              ),
+         TextField(
+          style: const TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+          decoration: InputDecoration(
+            hintText: "Search",
+            hintStyle: const TextStyle(color: Color(0xFF555555)),
+            prefixIcon: const Icon(Icons.search, color: Color(0xFF003D82)),
+            contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.0),
+              borderSide: const BorderSide(color: Color(0xFF003D82), width: 1.3),
             ),
-            const SizedBox(height: 24),
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12.0),
+              borderSide: const BorderSide(color: Color(0xFF003D82), width: 2),
+            ),
+          ),
+        ),
+        const SizedBox(height: 20),
+
 
             // Pilihan
             const Row(
@@ -77,7 +86,7 @@ class HomePage extends StatelessWidget {
                     width: 100,
                     margin: const EdgeInsets.only(right: 12),
                     decoration: BoxDecoration(
-                      color: Colors.pink[100],
+                      color: const Color.fromARGB(255, 0, 61, 130),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Center(child: Text("Cover ${index + 1}")),
@@ -116,7 +125,7 @@ class HomePage extends StatelessWidget {
                             height: 130,
                             width: double.infinity,
                             decoration: BoxDecoration(
-                              color: Colors.pink[100],
+                              color: const Color.fromARGB(255, 0, 61, 130),
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Center(child: Text("Cover ${index + 1}")),
@@ -126,11 +135,11 @@ class HomePage extends StatelessWidget {
                             left: 4,
                             child: CircleAvatar(
                               radius: 12,
-                              backgroundColor: Colors.red,
+                              backgroundColor: const Color(0xFFF7C100),
                               child: Text(
                                 "${index + 1}",
                                 style: const TextStyle(
-                                  color: Colors.white,
+                                  color: Color.fromARGB(255, 0, 0, 0),
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),

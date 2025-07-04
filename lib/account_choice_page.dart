@@ -12,9 +12,10 @@ class AccountChoicePage extends StatelessWidget {
     final iconAsset = isGoogle ? 'assets/google.png' : 'assets/facebook.png';
 
     final accounts = [
-      {"name": "Venita Amelia", "email": "venitaamelia5@gmail.com", "color": Colors.black},
-      {"name": "Vee Aaa", "email": "veea20@gmail.com", "color": Colors.red},
-      {"name": "Venitaaaa", "email": "venitaaaa6@gmail.com", "color": Colors.purple},
+      {"name": "Venita Amelia", "email": "venitaaa@gmail.com", "color": Colors.black},
+      {"name": "Wenita Amelia", "email": "wenitaaa@gmail.com", "color": Colors.red},
+      {"name": "Ronald Alexandro", "email": "ronalddd@gmail.com", "color": Colors.purple},
+      {"name": "Niren", "email": "nirennn@gmail.com", "color": const Color.fromARGB(255, 39, 50, 176)},
     ];
 
     return Scaffold(
@@ -67,14 +68,14 @@ class AccountChoicePage extends StatelessWidget {
                       offset: Offset(2, 2),
                     ),
                   ],
-                  border: Border.all(color: Colors.pink.shade100),
+                  border: Border.all(color: Color(0xFF003D82),width: 2),
                 ),
                 child: ListTile(
                   leading: Icon(Icons.account_circle, color: account['color'] as Color),
                   title: Text(
                     isGoogle
                         ? account['name'] as String
-                        : 'Lanjutkan sebagai ${account['name'] as String}',
+                        : '${account['name'] as String}',
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
@@ -95,6 +96,7 @@ class AccountChoicePage extends StatelessWidget {
                 ),
               );
             }),
+
             const SizedBox(height: 16),
 
             // Catatan privasi
@@ -125,7 +127,7 @@ class AccountChoicePage extends StatelessWidget {
             else
               Padding(
                 padding: const EdgeInsets.only(top: 24),
-                child: Image.asset('assets/meta.png', height: 24),
+                child: Image.asset('assets/meta.png', height: 50),
               )
           ],
         ),

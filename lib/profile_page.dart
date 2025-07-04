@@ -66,6 +66,8 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
+
+              //Gambar bacaan terakhir
               SizedBox(
                 height: 160,
                 child: ListView.builder(

@@ -39,77 +39,130 @@ class RegisterPage extends StatelessWidget {
               const SizedBox(height: 24),
 
               // Tombol Login Google dan Facebook
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AccountChoicePage(loginMethod: "Google"),
-                        ),
-                      );
-                    },
-                    icon: Image.asset('assets/google.png', height: 20),
-                    label: const Text("Login dengan Google"),
-                  ),
-                  const SizedBox(width: 10),
-                  OutlinedButton.icon(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const AccountChoicePage(loginMethod: "Facebook"),
-                        ),
-                      );
-                    },
-                    icon: Image.asset('assets/facebook.png', height: 20),
-                    label: const Text("Login dengan Facebook"),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 24),
+              // Tombol Login Google dan Facebook (vertikal + bentuk rapi)
+Column(
+  crossAxisAlignment: CrossAxisAlignment.stretch,
+  children: [
+    SizedBox(
+      height: 48,
+      child: OutlinedButton.icon(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AccountChoicePage(loginMethod: "Google"),
+            ),
+          );
+        },
+        icon: Image.asset('assets/google.png', height: 20),
+        label: const Text(
+          "Login dengan Google",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        style: OutlinedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          side: const BorderSide(color: Color(0xFF003D82), width: 1.5),
+          foregroundColor: Color(0xFF003D82),
+        ),
+      ),
+    ),
+    const SizedBox(height: 12),
+    SizedBox(
+      height: 48,
+      child: OutlinedButton.icon(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AccountChoicePage(loginMethod: "Facebook"),
+            ),
+          );
+        },
+        icon: Image.asset('assets/facebook.png', height: 20),
+        label: const Text(
+          "Login dengan Facebook",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
+        style: OutlinedButton.styleFrom(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          side: const BorderSide(color: Color(0xFF003D82), width: 1.5),
+          foregroundColor: Color(0xFF003D82),
+        ),
+      ),
+    ),
+  ],
+),
+const SizedBox(height: 24),
+
 
               const Text("- atau -", textAlign: TextAlign.center),
               const SizedBox(height: 16),
 
               // Form Nama, Email, Password
+              //Nama
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Nama',
-                  prefixIcon: const Icon(Icons.person),
+                  prefixIcon: Icon(Icons.person, color: Color(0xFF003D82)),
+                  hintStyle: TextStyle(color:Color(0xFF003D82)),
                   filled: true,
-                  fillColor: Colors.pink[50],
-                  border: OutlineInputBorder(
+                  fillColor: Color(0xFFB3D4FF),
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xFF003D82), width: 1.3),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xFF003D82), width: 2),
                   ),
                 ),
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
               ),
               const SizedBox(height: 16),
+
+              //Email
               TextField(
                 decoration: InputDecoration(
                   hintText: 'Email',
-                  prefixIcon: const Icon(Icons.email),
+                  prefixIcon: Icon(Icons.person, color: Color(0xFF003D82)),
+                  hintStyle: TextStyle(color: Color(0xFF003D82)),
                   filled: true,
-                  fillColor: Colors.pink[50],
-                  border: OutlineInputBorder(
+                  fillColor: Color(0xFFB3D4FF),
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xFF003D82), width: 1.3),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xFF003D82), width: 2),
                   ),
                 ),
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
               ),
               const SizedBox(height: 16),
-              TextField(
-                obscureText: true,
+
+              //Password
+                TextField(
                 decoration: InputDecoration(
                   hintText: 'Password',
-                  prefixIcon: const Icon(Icons.lock),
+                  prefixIcon: Icon(Icons.person, color: Color(0xFF003D82)),
+                  hintStyle: TextStyle(color: Color(0xFF003D82)),
                   filled: true,
-                  fillColor: Colors.pink[50],
-                  border: OutlineInputBorder(
+                  fillColor: Color(0xFFB3D4FF),
+                  enabledBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xFF003D82), width: 1.3),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                    borderSide: BorderSide(color: Color(0xFF003D82), width: 2),
                   ),
                 ),
+                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
               ),
               const SizedBox(height: 24),
 
@@ -131,7 +184,7 @@ class RegisterPage extends StatelessWidget {
                     // Aksi daftar
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.pink[200],
+                    backgroundColor: Color(0xFF003D82),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
@@ -141,6 +194,7 @@ class RegisterPage extends StatelessWidget {
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
+                      color: Colors.white,
                     ),
                   ),
                 ),
