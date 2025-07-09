@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'register_page.dart';
-import 'home_page.dart'; // Tambahkan ini sesuai lokasi file HomePage
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  final VoidCallback onLogin;
+  final VoidCallback onRegister;
 
-@override
+  const LoginPage({
+    super.key,
+    required this.onLogin,
+    required this.onRegister,
+  });
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -15,14 +20,12 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-             Image.asset(
+              Image.asset(
                 'assets/logo_apk.png',
-                height: 150, // tinggi gambar
+                height: 150,
                 fit: BoxFit.cover,
               ),
-              
               const SizedBox(height: 30),
-             
               const Text(
                 "Login",
                 style: TextStyle(
@@ -31,90 +34,47 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 20),
-
-            // Username
-            TextField(
-              style: const TextStyle(color: Color(0xFF003D82)),
-              decoration: InputDecoration(
-                labelText: "Username",
-                labelStyle: const TextStyle(color: Color(0xFF003D82)),
-                prefixIcon: const Icon(Icons.person, color: Color(0xFF003D82)),
-                contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: const BorderSide(color: Color(0xFF003D82), width: 1.3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: const BorderSide(color: Color(0xFF003D82), width: 2),
+              TextField(
+                decoration: const InputDecoration(
+                  labelText: "Username",
+                  prefixIcon: Icon(Icons.person),
+                  border: OutlineInputBorder(),
                 ),
               ),
-            ),
-            const SizedBox(height: 15),
-
-            // Password
-            TextField(
-              obscureText: true,
-              style: const TextStyle(color: Color(0xFF003D82)),
-              decoration: InputDecoration(
-                labelText: "Password",
-                labelStyle: const TextStyle(color: Color(0xFF003D82)),
-                prefixIcon: const Icon(Icons.lock, color: Color(0xFF003D82)),
-                contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: const BorderSide(color: Color(0xFF003D82), width: 1.3),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(12.0),
-                  borderSide: const BorderSide(color: Color(0xFF003D82), width: 2),
+              const SizedBox(height: 15),
+              TextField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                  labelText: "Password",
+                  prefixIcon: Icon(Icons.lock),
+                  border: OutlineInputBorder(),
                 ),
               ),
-            ),
-            const SizedBox(height: 15),
-
-            // Tombol Masuk
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF003D82),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+              const SizedBox(height: 15),
+              SizedBox(
+                width: double.infinity,
+                height: 48,
+                child: ElevatedButton(
+                  onPressed: onLogin,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF003D82),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                   ),
-                ),
-                onPressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
-                },
-                child: const Text(
-                  "Masuk",
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                  child: const Text(
+                    "Masuk",
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
-            ),
-            const SizedBox(height: 25),
-              
-            const Text("Apakah kamu punya akun?"),
+              const SizedBox(height: 25),
+              const Text("Apakah kamu punya akun?"),
               TextButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const RegisterPage()),
-                  );
-                },
+                onPressed: onRegister,
                 child: const Text(
                   "Membuat Akun",
-                  style: TextStyle(
-                    color: Colors.red,
-                  ),
+                  style: TextStyle(color: Colors.red),
                 ),
               ),
             ],

@@ -1,17 +1,28 @@
 import 'package:flutter/material.dart';
-import 'account_choice_page.dart'; // pastikan file ini ada
-// ignore: unused_import
-import 'login_page.dart'; // jika ingin navigasi balik ke login
 
 class RegisterPage extends StatelessWidget {
-  const RegisterPage({super.key});
+  final VoidCallback onGoogleTap;
+  final VoidCallback onFacebookTap;
+  final VoidCallback onRegister;
+  final VoidCallback onBack;
+
+  const RegisterPage({
+    super.key,
+    required this.onGoogleTap,
+    required this.onFacebookTap,
+    required this.onRegister,
+    required this.onBack,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: BackButton(color: Colors.black),
+        leading: BackButton(
+          color: Colors.black,
+          onPressed: onBack,
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -27,189 +38,77 @@ class RegisterPage extends StatelessWidget {
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
-                  shadows: [
-                    Shadow(
-                      offset: Offset(1, 1),
-                      blurRadius: 2,
-                      color: Colors.black26,
-                    )
-                  ],
                 ),
               ),
               const SizedBox(height: 24),
-
-              // Tombol Login Google dan Facebook
-              // Tombol Login Google dan Facebook (vertikal + bentuk rapi)
-Column(
-  crossAxisAlignment: CrossAxisAlignment.stretch,
-  children: [
-    SizedBox(
-      height: 48,
-      child: OutlinedButton.icon(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AccountChoicePage(loginMethod: "Google"),
-            ),
-          );
-        },
-        icon: Image.asset('assets/google.png', height: 20),
-        label: const Text(
-          "Login dengan Google",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          side: const BorderSide(color: Color(0xFF003D82), width: 1.5),
-          foregroundColor: Color(0xFF003D82),
-        ),
-      ),
-    ),
-    const SizedBox(height: 12),
-    SizedBox(
-      height: 48,
-      child: OutlinedButton.icon(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AccountChoicePage(loginMethod: "Facebook"),
-            ),
-          );
-        },
-        icon: Image.asset('assets/facebook.png', height: 20),
-        label: const Text(
-          "Login dengan Facebook",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        style: OutlinedButton.styleFrom(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          side: const BorderSide(color: Color(0xFF003D82), width: 1.5),
-          foregroundColor: Color(0xFF003D82),
-        ),
-      ),
-    ),
-  ],
-),
-const SizedBox(height: 24),
-
-
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  SizedBox(
+                    height: 48,
+                    child: OutlinedButton.icon(
+                      onPressed: onGoogleTap,
+                      icon: Image.asset('assets/google.png', height: 20),
+                      label: const Text("Login dengan Google"),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF003D82),
+                        side: const BorderSide(color: Color(0xFF003D82)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  SizedBox(
+                    height: 48,
+                    child: OutlinedButton.icon(
+                      onPressed: onFacebookTap,
+                      icon: Image.asset('assets/facebook.png', height: 20),
+                      label: const Text("Login dengan Facebook"),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF003D82),
+                        side: const BorderSide(color: Color(0xFF003D82)),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 24),
               const Text("- atau -", textAlign: TextAlign.center),
               const SizedBox(height: 16),
-
-              // Form Nama, Email, Password
-              //Nama
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Nama',
-                  prefixIcon: Icon(Icons.person, color: Color(0xFF003D82)),
-                  hintStyle: TextStyle(color:Color(0xFF003D82)),
-                  filled: true,
-                  fillColor: Color(0xFFB3D4FF),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xFF003D82), width: 1.3),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xFF003D82), width: 2),
-                  ),
-                ),
-                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-              ),
+              _buildTextField("Nama", Icons.person),
               const SizedBox(height: 16),
-
-              //Email
-              TextField(
-                decoration: InputDecoration(
-                  hintText: 'Email',
-                  prefixIcon: Icon(Icons.person, color: Color(0xFF003D82)),
-                  hintStyle: TextStyle(color: Color(0xFF003D82)),
-                  filled: true,
-                  fillColor: Color(0xFFB3D4FF),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xFF003D82), width: 1.3),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xFF003D82), width: 2),
-                  ),
-                ),
-                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-              ),
+              _buildTextField("Email", Icons.email),
               const SizedBox(height: 16),
-
-              //Password
-                TextField(
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  prefixIcon: Icon(Icons.person, color: Color(0xFF003D82)),
-                  hintStyle: TextStyle(color: Color(0xFF003D82)),
-                  filled: true,
-                  fillColor: Color(0xFFB3D4FF),
-                  enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xFF003D82), width: 1.3),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(12),
-                    borderSide: BorderSide(color: Color(0xFF003D82), width: 2),
-                  ),
-                ),
-                style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
-              ),
+              _buildTextField("Password", Icons.lock, obscure: true),
               const SizedBox(height: 24),
-
-              // Tombol Daftar
-              Container(
+              SizedBox(
                 height: 48,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 4,
-                      offset: Offset(2, 2),
-                    )
-                  ],
-                ),
                 child: ElevatedButton(
-                  onPressed: () {
-                    // Aksi daftar
-                  },
+                  onPressed: onRegister,
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: Color(0xFF003D82),
+                    backgroundColor: const Color(0xFF003D82),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: const Text(
                     'Daftar',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.white,
-                    ),
+                    style: TextStyle(color: Colors.white),
                   ),
                 ),
               ),
               const SizedBox(height: 24),
-
-              // Sudah punya akun?
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Text("Sudah punya akun? "),
                   GestureDetector(
-                    onTap: () {
-                      Navigator.pop(context); // atau kembali ke LoginPage()
-                    },
+                    onTap: onBack,
                     child: const Text(
                       "Masuk",
                       style: TextStyle(
@@ -219,9 +118,29 @@ const SizedBox(height: 24),
                     ),
                   ),
                 ],
-              ),
+              )
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTextField(String hint, IconData icon, {bool obscure = false}) {
+    return TextField(
+      obscureText: obscure,
+      decoration: InputDecoration(
+        hintText: hint,
+        prefixIcon: Icon(icon, color: const Color(0xFF003D82)),
+        filled: true,
+        fillColor: const Color(0xFFB3D4FF),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF003D82), width: 1.3),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+          borderSide: const BorderSide(color: Color(0xFF003D82), width: 2),
         ),
       ),
     );

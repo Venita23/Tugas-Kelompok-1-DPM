@@ -1,19 +1,5 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BacaanPage(),
-    );
-  }
-}
-
 class BacaanPage extends StatefulWidget {
   const BacaanPage({super.key});
 
@@ -29,7 +15,7 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
       "kategori": "Hari ini",
       "items": [
         {
-          "image": "assets/images/cover1.png",
+          "image": "assets/KinantiAsmaraDuaDunia.jpeg",
           "judul": "Kinanti Asmara Dua Dunia",
           "penulis": "Vir & Sam",
           "bab": "129/150",
@@ -37,7 +23,7 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "info": "1 Bab belum dibaca"
         },
         {
-          "image": "assets/images/cover2.png",
+          "image": "assets/TheWorldOfImmortality.png",
           "judul": "Love's Serendipity",
           "penulis": "188",
           "bab": "68",
@@ -108,44 +94,39 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
 
   final List<Map<String, String>> koleksi = [
     {
-      "image": "assets/images/cover1.png",
+      "image": "assets/KinantiAsmaraDuaDunia.jpeg",
       "title": "Kinanti Asmara Dua Dunia",
       "bab": "Bab 129/150"
     },
     {
-      "image": "assets/images/cover2.png",
+      "image": "assets/HarapanBaru.png",
       "title": "Harapan Baru",
       "bab": "Bab 58/60"
     },
     {
-      "image": "assets/images/cover3.png",
+      "image": "assets/CintaDalamDiam.png",
       "title": "Cinta Dalam Diam",
       "bab": "Bab 100/100"
     },
     {
-      "image": "assets/images/cover4.png",
+      "image": "assets/Misterikehidupan.png",
       "title": "Misteri Kehidupan",
       "bab": "Bab 70/100"
     },
     {
-      "image": "assets/images/cover5.png",
-      "title": "Surat untuk Senja",
-      "bab": "Bab 25/25"
+      "image": "assets/StayWithMe.jpeg",
+      "title": "Stay With Me",
+      "bab": "Bab 50/50"
     },
     {
-      "image": "assets/images/cover6.png",
-      "title": "Bumi",
+      "image": "assets/selirsangpangeran.jpeg",
+      "title": "Selir Sang Pangeran",
       "bab": "Bab 60/75"
     },
     {
-      "image": "assets/images/cover7.png",
+      "image": "assets/KisahKasihSenja.png",
       "title": "Kisah kasih Senja",
       "bab": "Bab 75/80"
-    },
-    {
-      "image": "",
-      "title": "+",
-      "bab": ""
     },
   ];
 
@@ -210,17 +191,6 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0,
-        selectedItemColor: const Color.fromARGB(255, 0, 61, 130),
-        unselectedItemColor: Colors.grey,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: "Bacaan"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Beranda"),
-          BottomNavigationBarItem(icon: Icon(Icons.category), label: "Genre"),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: "Profil"),
-        ],
-      ),
     );
   }
 
@@ -242,7 +212,7 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
                 margin: const EdgeInsets.symmetric(vertical: 6),
                 child: ListTile(
                   contentPadding: const EdgeInsets.all(8),
-                  leading: Image.asset(item["image"], width: 50, fit: BoxFit.cover),
+                  leading: Image.asset(item["image"], width: 100, height: 130),
                   title: Text("Judul : ${item["judul"]}", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
                   subtitle: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

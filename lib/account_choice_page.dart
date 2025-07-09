@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'home_page.dart'; // import halaman Home
 
 class AccountChoicePage extends StatelessWidget {
   final String loginMethod; // "Google" atau "Facebook"
+  final VoidCallback onBack;
+  final VoidCallback onAccountSelected;
 
-  const AccountChoicePage({super.key, required this.loginMethod});
+  const AccountChoicePage({
+    super.key,
+    required this.loginMethod,
+    required this.onBack,
+    required this.onAccountSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,16 +18,35 @@ class AccountChoicePage extends StatelessWidget {
     final iconAsset = isGoogle ? 'assets/google.png' : 'assets/facebook.png';
 
     final accounts = [
-      {"name": "Venita Amelia", "email": "venitaaa@gmail.com", "color": Colors.black},
-      {"name": "Wenita Amelia", "email": "wenitaaa@gmail.com", "color": Colors.red},
-      {"name": "Ronald Alexandro", "email": "ronalddd@gmail.com", "color": Colors.purple},
-      {"name": "Niren", "email": "nirennn@gmail.com", "color": const Color.fromARGB(255, 39, 50, 176)},
+      {
+        "name": "Venita Amelia",
+        "email": "venitaaa@gmail.com",
+        "color": Colors.black
+      },
+      {
+        "name": "Wenita Amelia",
+        "email": "wenitaaa@gmail.com",
+        "color": Colors.red
+      },
+      {
+        "name": "Ronald Alexandro",
+        "email": "ronalddd@gmail.com",
+        "color": Colors.purple
+      },
+      {
+        "name": "Niren",
+        "email": "nirennn@gmail.com",
+        "color": const Color.fromARGB(255, 39, 50, 176)
+      },
     ];
 
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: BackButton(color: Colors.black),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
+          onPressed: onBack,
+        ),
         backgroundColor: Colors.white,
         elevation: 0,
       ),
@@ -30,7 +55,7 @@ class AccountChoicePage extends StatelessWidget {
         child: Column(
           children: [
             const SizedBox(height: 10),
-            Text(
+            const Text(
               "Pilih Akun",
               style: TextStyle(
                 fontSize: 24,
@@ -62,37 +87,27 @@ class AccountChoicePage extends StatelessWidget {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                   boxShadow: [
-                    BoxShadow(
+                    const BoxShadow(
                       color: Colors.black12,
                       blurRadius: 4,
                       offset: Offset(2, 2),
                     ),
                   ],
-                  border: Border.all(color: Color(0xFF003D82),width: 2),
+                  border: Border.all(color: const Color(0xFF003D82), width: 2),
                 ),
                 child: ListTile(
                   leading: Icon(Icons.account_circle, color: account['color'] as Color),
                   title: Text(
-                    isGoogle
-                        ? account['name'] as String
-                        : '${account['name'] as String}',
+                    account['name'] as String,
                     style: const TextStyle(fontWeight: FontWeight.bold),
                   ),
                   subtitle: Text(
-                    isGoogle
-                        ? account['email'] as String
-                        : (account['email'] as String).length > 22
-                            ? "${(account['email'] as String).substring(0, 22)}..."
-                            : account['email'] as String,
+                    (account['email'] as String).length > 22
+                        ? "${(account['email'] as String).substring(0, 22)}..."
+                        : account['email'] as String,
                   ),
                   trailing: const Icon(Icons.arrow_forward_ios),
-                  onTap: () {
-                    // 👉 Ganti ke halaman Home setelah pilih akun
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
-                    );
-                  },
+                  onTap: onAccountSelected,
                 ),
               );
             }),

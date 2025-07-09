@@ -1,41 +1,21 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: ProfilePage(), // pastikan ini
-    );
-  }
-}
-
-// Copy seluruh kode ProfilePage di bawah sini
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List<String> gambarBacaan = [
+      "assets/KinantiAsmaraDuaDunia.jpeg",
+      "assets/IstriCantikSangPanglima.jpeg",
+      "assets/Vimala.jpeg",
+      "assets/StayWithMe.jpeg",
+      "assets/CelestiaMenjadiPengantinKaisar.jpeg",
+      
+    ];
+
     return Scaffold(
       backgroundColor: Colors.white,
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 3,
-        selectedItemColor: const Color.fromARGB(255, 40, 101, 244),
-        unselectedItemColor: Colors.grey,
-        showUnselectedLabels: true,
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Bacaan'),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
-          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Genre'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
-        ],
-      ),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
@@ -67,27 +47,38 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 10),
 
-              //Gambar bacaan terakhir
+              // Gambar Bacaan Terakhir
               SizedBox(
                 height: 160,
                 child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: 5,
+                  itemCount: gambarBacaan.length,
                   itemBuilder: (context, index) {
                     return Container(
                       width: 100,
                       margin: const EdgeInsets.only(right: 12),
                       decoration: BoxDecoration(
-                        color: const Color.fromARGB(255, 40, 3, 16),
                         borderRadius: BorderRadius.circular(8),
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.black12,
+                            blurRadius: 4,
+                            offset: Offset(2, 2),
+                          ),
+                        ],
                       ),
-                      child: Center(
-                        child: Text("Cover ${index + 1}"),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          gambarBacaan[index],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     );
                   },
                 ),
               ),
+
               const SizedBox(height: 24),
               buildSettingsCard([
                 settingItem(Icons.settings, "Pengaturan Akun"),
@@ -110,7 +101,7 @@ class ProfilePage extends StatelessWidget {
                   minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                 ),
-                child: const Text("Log Out", style: TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
+                child: const Text("Log Out", style: TextStyle(color: Colors.white)),
               ),
             ],
           ),

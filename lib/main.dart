@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart'; // mengimpor file login_page.dart
-
+import 'login_page.dart';
+import 'register_page.dart';
+import 'account_choice_page.dart';
+import 'home_page.dart';
+import 'profile_page.dart';
+import 'genre_page.dart';
+import 'bacaan_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,12 +13,117 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
+      title: 'UAS DPM',
       debugShowCheckedModeBanner: false,
-      home: const LoginPage(),
+      home: NavigationHandler(),
+    );
+  }
+}
+
+class NavigationHandler extends StatefulWidget {
+  const NavigationHandler({super.key});
+
+  @override
+  State<NavigationHandler> createState() => _NavigationHandlerState();
+}
+
+class _NavigationHandlerState extends State<NavigationHandler> {
+  String _currentScreen = 'login';
+  String? _loginMethod;
+
+  void _goTo(String screen, {String? method}) {
+    setState(() {
+      _currentScreen = screen;
+      _loginMethod = method;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    switch (_currentScreen) {
+      case 'login':
+        return LoginPage(
+          onLogin: () => _goTo('main_home'), // 👈 arahkan ke tab Home
+          onRegister: () => _goTo('register'),
+        );
+      case 'register':
+        return RegisterPage(
+          onBack: () => _goTo('login'),
+          onRegister: () => _goTo('main_home'),
+          onGoogleTap: () => _goTo('account', method: 'Google'),
+          onFacebookTap: () => _goTo('account', method: 'Facebook'),
+        );
+      case 'account':
+        return AccountChoicePage(
+          loginMethod: _loginMethod ?? 'Google',
+          onBack: () => _goTo('register'),
+          onAccountSelected: () => _goTo('main_home'),
+        );
+      case 'main_home':
+        return MainScreen(initialIndex: 1); // ✅ const DIHAPUS agar tidak error
+      case 'main':
+        return const MainScreen(); // default ke index 1 (Home)
+      default:
+        return const Center(child: Text('Unknown screen'));
+    }
+  }
+}
+
+class MainScreen extends StatefulWidget {
+  final int initialIndex;
+
+  const MainScreen({super.key, this.initialIndex = 1});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  late int _selectedIndex;
+
+  static final List<Widget> _pages = [
+    const BacaanPage(),
+    HomePage(),
+    GenrePage(),
+    const ProfilePage(),
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = widget.initialIndex;
+  }
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: _pages[_selectedIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: const Color(0xFFFDF3FA),
+        currentIndex: _selectedIndex,
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        showUnselectedLabels: true,
+        onTap: _onItemTapped,
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'Bacaan'),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
+          BottomNavigationBarItem(icon: Icon(Icons.category), label: 'Genre'),
+          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profil'),
+        ],
+      ),
     );
   }
 }
