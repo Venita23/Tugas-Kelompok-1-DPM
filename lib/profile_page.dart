@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'pengaturan_akun.dart';
 import 'preferensi_bacaan.dart';
-
+import 'riwayat.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -108,7 +108,18 @@ class ProfilePage extends StatelessWidget {
                   },
                 ),
                 settingItem(Icons.subscriptions, "Langganan"),
-                settingItem(Icons.history, "Riwayat"),
+
+                 ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Riwayat"),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Riwayat()),
+                    );
+                  },
+                ),
               ]),
               const SizedBox(height: 12),
               buildSettingsCard([
