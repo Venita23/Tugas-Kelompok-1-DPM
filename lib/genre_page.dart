@@ -41,7 +41,7 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
       {"judul": "Celestia Menjadi Pengantin Kaisar", "penulis": "Aluna Sty", "bab": "178", "update": "Seminggu Sekali", "gambar": "assets/CelestiaMenjadiPengantinKaisar.jpeg"},
     ],
     'Kerajaan': [
-      {"judul": "Istri Cantik Sang Pangeran", "penulis": "Araina", "bab": "100", "update": "Tiap Hari", "gambar": "assets/IstriCantikSangPanglima.jpeg"},
+      {"judul": "Istri Cantik Sang Panglima", "penulis": "Araina", "bab": "100", "update": "Tiap Hari", "gambar": "assets/IstriCantikSangPanglima.jpeg"},
       {"judul": "Reinkarnasi Queen Mafia Menjadi Putri Duke", "penulis": "Amey MK", "bab": "100", "update": "Tiap Hari", "gambar": "assets/ReinkarnasiQueenMafiaMenjadiPutriDuke.jpeg"},
       {"judul": "Moonlight", "penulis": "Enigma", "bab": "50", "update": "Tiap Hari", "gambar": "assets/moonlight.jpeg"},
       {"judul": "Sword", "penulis": "Olivia Wilson", "bab": "75", "update": "Seminggu Dua kali", "gambar": "assets/sword.png"},

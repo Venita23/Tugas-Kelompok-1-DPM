@@ -8,7 +8,7 @@ class HomeController {
   final Map<String, List<Map<String, String>>> bukuPilihan = {
     'Untuk Anda': [
       {"judul": "Kinanti Asmara Dua Dunia", "gambar": "assets/KinantiAsmaraDuaDunia.jpeg"},
-      {"judul": "TheSecond Life of The Crown Princess", "gambar": "assets/TheSecondLifeofTheCrownPrincess.jpeg"},
+      {"judul": "The Second Life of The Crown Princess", "gambar": "assets/TheSecondLifeofTheCrownPrincess.jpeg"},
       {"judul": "The Last Element", "gambar": "assets/TheLastElement.jpeg"},
       {"judul": "a love worth fighting for", "gambar": "assets/aloveworthfightingfor.jpeg"},
       {"judul": "Kebangkitan Dewi Api", "gambar": "assets/KebangkitanDewiApi.jpeg"},

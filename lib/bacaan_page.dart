@@ -24,16 +24,16 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
         },
         {
           "image": "assets/TheWorldOfImmortality.png",
-          "judul": "Love's Serendipity",
-          "penulis": "188",
-          "bab": "68",
+          "judul": "The World of Immortality",
+          "penulis": "Yunnii Parkk",
+          "bab": "80",
           "update": "Tiap Hari",
-          "info": "68 Bab belum dibaca"
+          "info": "47 Bab belum dibaca"
         },
         {
-          "image": "assets/images/cover3.png",
-          "judul": "Jatuh ke dalam Api",
-          "penulis": "Yelhan",
+          "image": "assets/KebangkitanDewiApi.jpeg",
+          "judul": "Kebangkitan Dewi Api",
+          "penulis": "Yehana",
           "bab": "105",
           "update": "Tiap Hari",
           "info": "1 Bab belum dibaca"
@@ -44,28 +44,28 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
       "kategori": "Kemarin",
       "items": [
         {
-          "image": "assets/images/cover4.png",
-          "judul": "Vimela (Janji Jiwa)",
+          "image": "assets/Vimala.jpeg",
+          "judul": "Vimala (Janji Jiwa)",
           "penulis": "Vir & Sam",
           "bab": "75",
           "update": "Tiap Hari",
           "info": "1 Bab belum dibaca"
         },
         {
-          "image": "assets/images/cover5.png",
+          "image": "assets/IstriCantikSangPanglima.jpeg",
           "judul": "Istri Cantik Sang Panglima",
-          "penulis": "Arnis",
+          "penulis": "Araina",
           "bab": "100",
           "update": "Tiap Hari",
           "info": "0 Bab belum dibaca"
         },
         {
-          "image": "assets/images/cover6.png",
-          "judul": "Love Brings You Home",
-          "penulis": "Helena Paquet",
-          "bab": "55",
+          "image": "assets/selirsangpangeran.jpeg",
+          "judul": "Selir Sang Pangeran",
+          "penulis": "Princeess Pefiz",
+          "bab": "105",
           "update": "Seminggu Sekali",
-          "info": "1 Bab belum dibaca"
+          "info": "25 Bab belum dibaca"
         },
       ]
     },
@@ -73,7 +73,7 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
       "kategori": "Sebelumnya",
       "items": [
         {
-          "image": "assets/images/cover7.png",
+          "image": "assets/StayWithMe.jpeg",
           "judul": "Stay With Me",
           "penulis": "Claudia Wilson",
           "bab": "50",
@@ -81,12 +81,12 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "info": "12 Bab belum dibaca"
         },
         {
-          "image": "assets/images/cover8.png",
+          "image": "assets/OurSecretLove.jpeg",
           "judul": "Our Secret Love",
           "penulis": "Claudia Wilson",
-          "bab": "78",
+          "bab": "56",
           "update": "Tiap Hari",
-          "info": "36 Bab belum dibaca"
+          "info": "15 Bab belum dibaca"
         },
       ]
     },
