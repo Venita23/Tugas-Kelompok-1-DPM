@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pengaturan_akun.dart';
+import 'preferensi_bacaan.dart';
 
 
 class ProfilePage extends StatelessWidget {
@@ -94,7 +95,18 @@ class ProfilePage extends StatelessWidget {
                     );
                   },
                 ),
-                settingItem(Icons.favorite_border, "Preferensi Bacaan"),
+
+                ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Preferensi Bacaan"),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PreferensiBacaan()),
+                    );
+                  },
+                ),
                 settingItem(Icons.subscriptions, "Langganan"),
                 settingItem(Icons.history, "Riwayat"),
               ]),
