@@ -210,26 +210,43 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
               return Card(
                 elevation: 2,
                 margin: const EdgeInsets.symmetric(vertical: 6),
-                child: ListTile(
-                  contentPadding: const EdgeInsets.all(8),
-                  leading: Image.asset(item["image"], width: 100, height: 130),
-                  title: Text("Judul : ${item["judul"]}", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
-                  subtitle: Column(
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("Penulis : ${item["penulis"]}", style: const TextStyle(fontSize: 12)),
-                      Text("Bab : ${item["bab"]}", style: const TextStyle(fontSize: 12)),
-                      Text("Update : ${item["update"]}", style: const TextStyle(fontSize: 12)),
-                      Text(item["info"], style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(
+                          item["image"],
+                          width: 100,
+                          height: 150,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text("Judul : ${item["judul"]}", style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 13)),
+                            Text("Penulis : ${item["penulis"]}", style: const TextStyle(fontSize: 12)),
+                            Text("Bab : ${item["bab"]}", style: const TextStyle(fontSize: 12)),
+                            Text("Update : ${item["update"]}", style: const TextStyle(fontSize: 12)),
+                            Text(item["info"], style: const TextStyle(fontSize: 12, color: Colors.grey)),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: const Color.fromARGB(255, 179, 212, 255),
+                          foregroundColor: Colors.black,
+                        ),
+                        child: const Text("Baca"),
+                      ),
                     ],
-                  ),
-                  trailing: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 179, 212, 255),
-                      foregroundColor: Colors.black,
-                    ),
-                    child: const Text("Baca"),
                   ),
                 ),
               );
