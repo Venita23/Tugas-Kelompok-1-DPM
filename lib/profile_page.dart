@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'pengaturan_akun.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -81,7 +83,17 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 24),
               buildSettingsCard([
-                settingItem(Icons.settings, "Pengaturan Akun"),
+                ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Pengaturan Akun"),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PengaturanAkun()),
+                    );
+                  },
+                ),
                 settingItem(Icons.favorite_border, "Preferensi Bacaan"),
                 settingItem(Icons.subscriptions, "Langganan"),
                 settingItem(Icons.history, "Riwayat"),
