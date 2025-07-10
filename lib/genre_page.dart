@@ -1,18 +1,5 @@
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: GenrePage(), // ← Diganti dari BacaanPage() ke GenrePage()
-    );
-  }
-}
-
-
 class GenrePage extends StatefulWidget {
   const GenrePage({super.key});
 
@@ -26,7 +13,6 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
 
   final List<String> kategori = ['Untuk Anda', 'Kerajaan', 'Romansa', 'Fantasi', 'Misteri'];
 
-  // 📝 Ubah isi setiap genre di bawah ini (judul, penulis, gambar, bab, update)
   final Map<String, List<Map<String, String>>> semuaBacaan = {
     'Untuk Anda': [
       {"judul": "Kinanti Asmara Dua Dunia", "penulis": "Vir & Sam", "bab": "150", "update": "Tiap Hari", "gambar": "assets/KinantiAsmaraDuaDunia.jpeg"},
@@ -40,6 +26,8 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
       {"judul": "Kebangkitan Dewi Api", "penulis": "Yehana", "bab": "105", "update": "Tiap Hari", "gambar": "assets/KebangkitanDewiApi.jpeg"},
       {"judul": "Celestia Menjadi Pengantin Kaisar", "penulis": "Aluna Sty", "bab": "178", "update": "Seminggu Sekali", "gambar": "assets/CelestiaMenjadiPengantinKaisar.jpeg"},
     ],
+    // genre lainnya tidak diubah...
+    // isi lengkap tetap seperti yang kamu kirim sebelumnya
     'Kerajaan': [
       {"judul": "Istri Cantik Sang Panglima", "penulis": "Araina", "bab": "100", "update": "Tiap Hari", "gambar": "assets/IstriCantikSangPanglima.jpeg"},
       {"judul": "Reinkarnasi Queen Mafia Menjadi Putri Duke", "penulis": "Amey MK", "bab": "100", "update": "Tiap Hari", "gambar": "assets/ReinkarnasiQueenMafiaMenjadiPutriDuke.jpeg"},
@@ -65,18 +53,17 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
       {"judul": "Our Secret Love", "penulis": "Claudia Wilson", "bab": "56", "update": "Tiap Hari", "gambar": "assets/OurSecretLove.jpeg"},
     ],
     'Fantasi': [
-    {"judul": "The World Of Immortality", "penulis": "Yunnii Parkk", "bab": "80", "update": "Tiap Hari", "gambar": "assets/TheWorldOfImmortality.png"},
-    {"judul": "The Second Life of The Crown Princess", "penulis": "Wintersnow", "bab": "168", "update": "Tiap Hari", "gambar": "assets/TheSecondLifeofTheCrownPrincess.jpeg"},
-    {"judul": "Demon In The Wood", "penulis": "Grishaverse", "bab": "100", "update": "Tiap Hari", "gambar": "assets/DemonInTheWood.jpeg"},
-    {"judul": "Windwitch", "penulis": "Susan Dennerd", "bab": "200", "update": "Seminggu", "gambar": "assets/Windwitch.jpeg"},
-    {"judul": "Harta Vaeran", "penulis": "Pratama Wirya", "bab": "65", "update": "Tiap Hari", "gambar": "assets/HartaVaeran.jpeg"},
-    {"judul": "The Muse", "penulis": "Jessie Burton", "bab": "120", "update": "Tiap Hari", "gambar": "assets/TheMuse.jpeg"},
-    {"judul": "The Son Neplune", "penulis": "Rick Riordan", "bab": "80", "update": "Tiap Hari", "gambar": "assets/TheSonNeptune.jpeg"},
-    {"judul": "Pendekar Syair Terkutuk", "penulis": "Rendra Harahap", "bab": "60", "update": "Dua Hari Sekali", "gambar": "assets/PendekarSyairTerkutuk.jpeg"},
-    {"judul": "The Poppy War Perang Opium", "penulis": "R. F. Kuang", "bab": "150", "update": "Tiap Hari", "gambar": "assets/ThePoppyWarPerangOpium.jpeg"},
-    {"judul": "Anak dari Desa yang Raib", "penulis": "Marina Saga", "bab": "44", "update": "Tiap Hari", "gambar": "assets/AnakdariDesayangRaib.jpeg"},
-  ],
-
+      {"judul": "The World Of Immortality", "penulis": "Yunnii Parkk", "bab": "80", "update": "Tiap Hari", "gambar": "assets/TheWorldOfImmortality.png"},
+      {"judul": "The Second Life of The Crown Princess", "penulis": "Wintersnow", "bab": "168", "update": "Tiap Hari", "gambar": "assets/TheSecondLifeofTheCrownPrincess.jpeg"},
+      {"judul": "Demon In The Wood", "penulis": "Grishaverse", "bab": "100", "update": "Tiap Hari", "gambar": "assets/DemonInTheWood.jpeg"},
+      {"judul": "Windwitch", "penulis": "Susan Dennerd", "bab": "200", "update": "Seminggu", "gambar": "assets/Windwitch.jpeg"},
+      {"judul": "Harta Vaeran", "penulis": "Pratama Wirya", "bab": "65", "update": "Tiap Hari", "gambar": "assets/HartaVaeran.jpeg"},
+      {"judul": "The Muse", "penulis": "Jessie Burton", "bab": "120", "update": "Tiap Hari", "gambar": "assets/TheMuse.jpeg"},
+      {"judul": "The Son Neplune", "penulis": "Rick Riordan", "bab": "80", "update": "Tiap Hari", "gambar": "assets/TheSonNeptune.jpeg"},
+      {"judul": "Pendekar Syair Terkutuk", "penulis": "Rendra Harahap", "bab": "60", "update": "Dua Hari Sekali", "gambar": "assets/PendekarSyairTerkutuk.jpeg"},
+      {"judul": "The Poppy War Perang Opium", "penulis": "R. F. Kuang", "bab": "150", "update": "Tiap Hari", "gambar": "assets/ThePoppyWarPerangOpium.jpeg"},
+      {"judul": "Anak dari Desa yang Raib", "penulis": "Marina Saga", "bab": "44", "update": "Tiap Hari", "gambar": "assets/AnakdariDesayangRaib.jpeg"},
+    ],
     'Misteri': [
       {"judul": "Kinanti Asmara Dua Dunia", "penulis": "Vir & Sam", "bab": "150", "update": "Tiap Hari", "gambar": "assets/KinantiAsmaraDuaDunia.jpeg"},
       {"judul": "Sang Penerbang Di Taman Puisi", "penulis": "Briigitte Schwartz", "bab": "100", "update": "Tiap Hari", "gambar": "assets/SangPenerbangDiTamanPuisi.jpeg"},
@@ -91,12 +78,33 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
     ],
   };
 
+  List<Map<String, String>> _hasilPencarian = [];
+  bool _sedangMencari = false;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(length: kategori.length, vsync: this);
     _searchController = TextEditingController();
+    _searchController.addListener(_filterBacaan);
+  }
+
+  void _filterBacaan() {
+    final query = _searchController.text.toLowerCase();
+    if (query.isEmpty) {
+      setState(() {
+        _sedangMencari = false;
+        _hasilPencarian = [];
+      });
+    } else {
+      final semua = semuaBacaan.values.expand((e) => e).toList();
+      setState(() {
+        _sedangMencari = true;
+        _hasilPencarian = semua
+            .where((buku) => buku['judul']!.toLowerCase().contains(query))
+            .toList();
+      });
+    }
   }
 
   Widget buildCard(Map<String, String> data) {
@@ -188,19 +196,25 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
           tabs: kategori.map((e) => Tab(text: e)).toList(),
         ),
       ),
-      body: TabBarView(
-        controller: _tabController,
-        children: kategori.map((genre) {
-          final bacaanGenre = semuaBacaan[genre]!;
-          return SingleChildScrollView(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              children: bacaanGenre.map((data) => buildCard(data)).toList(),
+      body: _sedangMencari
+          ? SingleChildScrollView(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                children: _hasilPencarian.map((data) => buildCard(data)).toList(),
+              ),
+            )
+          : TabBarView(
+              controller: _tabController,
+              children: kategori.map((genre) {
+                final bacaanGenre = semuaBacaan[genre]!;
+                return SingleChildScrollView(
+                  padding: const EdgeInsets.all(12),
+                  child: Column(
+                    children: bacaanGenre.map((data) => buildCard(data)).toList(),
+                  ),
+                );
+              }).toList(),
             ),
-          );
-        }).toList(),
-      ),
-     
     );
   }
 
@@ -210,4 +224,4 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
     _tabController.dispose();
     super.dispose();
   }
-}
+}  
