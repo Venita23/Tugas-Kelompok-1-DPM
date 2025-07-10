@@ -1,102 +1,22 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends StatelessWidget {
+  final TextEditingController searchController;
+  final String selectedGenre;
+  final List<Map<String, String>> filteredList;
+  final List<Map<String, String>> bukuPopuler;
+  final Map<String, List<Map<String, String>>> bukuPilihan;
+  final void Function(String) onGenreSelected;
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  String selectedGenre = 'Untuk Anda';
-  TextEditingController searchController = TextEditingController();
-  List<Map<String, String>> filteredList = [];
-
-  final Map<String, List<Map<String, String>>> bukuPilihan = {
-    'Untuk Anda': [
-      {"judul": "Kinanti Asmara Dua Dunia", "gambar": "assets/KinantiAsmaraDuaDunia.jpeg"},
-      {"judul": "TheSecond Life of The Crown Princess", "gambar": "assets/TheSecondLifeofTheCrownPrincess.jpeg"},
-      {"judul": "The Last Element", "gambar": "assets/TheLastElement.jpeg"},
-      {"judul": "a love worth fighting for", "gambar": "assets/aloveworthfightingfor.jpeg"},
-      {"judul": "Kebangkitan Dewi Api", "gambar": "assets/KebangkitanDewiApi.jpeg"},
-      {"judul": "Celestia Menjadi Pengantin Kaisar", "gambar": "assets/CelestiaMenjadiPengantinKaisar.jpeg"},
-    ],
-    'Kerajaan': [
-      {"judul": "Istri Cantik Sang Panglima", "gambar": "assets/IstriCantikSangPanglima.jpeg"},
-      {"judul": "Reinkarnasi Queen Mafia Menjadi Putri Duke", "gambar": "assets/ReinkarnasiQueenMafiaMenjadiPutriDuke.jpeg"},
-      {"judul": "Moonlight", "gambar": "assets/moonlight.jpeg"},
-      {"judul": "Sword", "gambar": "assets/sword.png"},
-      {"judul": "Kebangkitan Dewi Api", "gambar": "assets/KebangkitanDewiApi.jpeg"},
-      {"judul": "Selir Sang Pangeran", "gambar": "assets/selirsangpangeran.jpeg"},
-    ],
-    'Romansa': [
-      {"judul": "Santri Cantik Incaran Gus AL", "gambar": "assets/SantriCantikIncaranGusAL.png"},
-      {"judul": "Love", "gambar": "assets/love.jpeg"},
-      {"judul": "Our Secret Love", "gambar": "assets/OurSecretLove.jpeg"},
-      {"judul": "Love Story", "gambar": "assets/LoveStory.jpeg"},
-      {"judul": "Kisah Kasih Senja", "gambar": "assets/KisahKasihSenja.png"},
-      {"judul": "Harapan Baru", "gambar": "assets/HarapanBaru.png"},
-    ],
-    'Fantasi': [
-      {"judul": "The World of Immortality", "gambar": "assets/TheWorldOfImmortality.png"},
-      {"judul": "The Son Neptune", "gambar": "assets/TheSonNeptune.jpeg"},
-      {"judul": "The Second Life of The Crown Princess", "gambar": "assets/TheSecondLifeofTheCrownPrincess.jpeg"},
-      {"judul": "Anak dari Desa yang Raib", "gambar": "assets/AnakdariDesayangRaib.jpeg"},
-      {"judul": "The Poppy War Perang Opium", "gambar": "assets/ThePoppyWarPerangOpium.jpeg"},
-      {"judul": "Windwitch", "gambar": "assets/Windwitch.jpeg"},
-    ],
-    'Misteri': [
-      {"judul": "Kinanti Asmara Dua Dunia", "gambar": "assets/KinantiAsmaraDuaDunia.jpeg"},
-      {"judul": "The Last Element", "gambar": "assets/TheLastElement.jpeg"},
-      {"judul": "Vimala (Janji Jiwa)", "gambar": "assets/Vimala.jpeg"},
-      {"judul": "Walk Into The Shadow", "gambar": "assets/WalkIntoTheShadow.jpeg"},
-      {"judul": "Misteri Kehidupan", "gambar": "assets/MisteriKehidupan.png"},
-      {"judul": "Sang Penerbang Di Taman Puisi", "gambar": "assets/SangPenerbangDiTamanPuisi.jpeg"},
-    ],
-  };
-
-  final List<Map<String, String>> bukuPopuler = [
-    {"judul": "Kinanti Asmara Dua Dunia", "gambar": "assets/KinantiAsmaraDuaDunia.jpeg"},
-    {"judul": "Vimala (Janji Jiwa)", "gambar": "assets/Vimala.jpeg"},
-    {"judul": "Stay With Me", "gambar": "assets/StayWithMe.jpeg"},
-    {"judul": "Cinta Dalam Diam", "gambar": "assets/CintaDalamDiam.png"},
-    {"judul": "Our Secret Love", "gambar": "assets/OurSecretLove.jpeg"},
-    {"judul": "Kebangkitan Dewi Api", "gambar": "assets/KebangkitanDewiApi.jpeg"},
-    {"judul": "Istri Cantik Sang Panglima", "gambar": "assets/IstriCantikSangPanglima.jpeg"},
-    {"judul": "Celestia Menjadi Pengantin Kaisar", "gambar": "assets/CelestiaMenjadiPengantinKaisar.jpeg"},
-  ];
-
-  @override
-  void initState() {
-    super.initState();
-    filteredList = bukuPilihan[selectedGenre] ?? [];
-    searchController.addListener(_filterSearchResults);
-  }
-
-  void _filterSearchResults() {
-    final query = searchController.text.toLowerCase();
-    final allBooks = bukuPilihan[selectedGenre] ?? [];
-
-    if (query.isEmpty) {
-      setState(() {
-        filteredList = allBooks;
-      });
-    } else {
-      setState(() {
-        filteredList = allBooks
-            .where((buku) => buku["judul"]!.toLowerCase().contains(query))
-            .toList();
-      });
-    }
-  }
-
-  void _onGenreSelected(String genre) {
-    setState(() {
-      selectedGenre = genre;
-      searchController.clear();
-      filteredList = bukuPilihan[genre] ?? [];
-    });
-  }
+  const HomePage({
+    super.key,
+    required this.searchController,
+    required this.selectedGenre,
+    required this.filteredList,
+    required this.bukuPopuler,
+    required this.bukuPilihan,
+    required this.onGenreSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -110,10 +30,8 @@ class _HomePageState extends State<HomePage> {
             const SizedBox(height: 12),
             TextField(
               controller: searchController,
-              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 hintText: "Search",
-                hintStyle: const TextStyle(color: Color(0xFF555555)),
                 prefixIcon: const Icon(Icons.search, color: Color(0xFF003D82)),
                 contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
                 enabledBorder: OutlineInputBorder(
@@ -138,16 +56,16 @@ class _HomePageState extends State<HomePage> {
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
-                children: ['Untuk Anda', 'Kerajaan', 'Romansa', 'Fantasi', 'Misteri']
-                    .map((genre) => Padding(
-                          padding: const EdgeInsets.only(right: 8.0),
-                          child: ChoiceChip(
-                            label: Text(genre),
-                            selected: selectedGenre == genre,
-                            onSelected: (_) => _onGenreSelected(genre),
-                          ),
-                        ))
-                    .toList(),
+                children: bukuPilihan.keys.map((genre) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: ChoiceChip(
+                      label: Text(genre),
+                      selected: selectedGenre == genre,
+                      onSelected: (_) => onGenreSelected(genre),
+                    ),
+                  );
+                }).toList(),
               ),
             ),
             const SizedBox(height: 12),

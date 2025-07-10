@@ -6,6 +6,7 @@ import 'home_page.dart';
 import 'profile_page.dart';
 import 'genre_page.dart';
 import 'bacaan_page.dart';
+import 'home_controller.dart'; // ✅ Tambahkan ini
 
 void main() {
   runApp(const MyApp());
@@ -47,7 +48,7 @@ class _NavigationHandlerState extends State<NavigationHandler> {
     switch (_currentScreen) {
       case 'login':
         return LoginPage(
-          onLogin: () => _goTo('main_home'), // 👈 arahkan ke tab Home
+          onLogin: () => _goTo('main_home'),
           onRegister: () => _goTo('register'),
         );
       case 'register':
@@ -64,9 +65,9 @@ class _NavigationHandlerState extends State<NavigationHandler> {
           onAccountSelected: () => _goTo('main_home'),
         );
       case 'main_home':
-        return MainScreen(initialIndex: 1); // ✅ const DIHAPUS agar tidak error
+        return MainScreen(initialIndex: 1);
       case 'main':
-        return const MainScreen(); // default ke index 1 (Home)
+        return const MainScreen();
       default:
         return const Center(child: Text('Unknown screen'));
     }
@@ -84,31 +85,49 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late int _selectedIndex;
-
-  static final List<Widget> _pages = [
-    const BacaanPage(),
-    HomePage(),
-    GenrePage(),
-    const ProfilePage(),
-  ];
+  late HomeController homeController; // ✅ controller untuk HomePage
 
   @override
   void initState() {
     super.initState();
     _selectedIndex = widget.initialIndex;
-  }
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
+    homeController = HomeController();
+    homeController.searchController.addListener(() {
+      setState(() {
+        homeController.filterSearchResults();
+      });
     });
   }
 
   @override
+  void dispose() {
+    homeController.searchController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final List<Widget> pages = [
+      const BacaanPage(),
+      HomePage(
+        searchController: homeController.searchController,
+        selectedGenre: homeController.selectedGenre,
+        filteredList: homeController.filteredList,
+        bukuPopuler: homeController.bukuPopuler,
+        bukuPilihan: homeController.bukuPilihan,
+        onGenreSelected: (genre) {
+          setState(() {
+            homeController.onGenreSelected(genre);
+          });
+        },
+      ),
+      GenrePage(),
+      const ProfilePage(),
+    ];
+
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _pages[_selectedIndex],
+      body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color(0xFFFDF3FA),
@@ -116,7 +135,7 @@ class _MainScreenState extends State<MainScreen> {
         selectedItemColor: Colors.blue,
         unselectedItemColor: Colors.grey,
         showUnselectedLabels: true,
-        onTap: _onItemTapped,
+        onTap: (index) => setState(() => _selectedIndex = index),
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.menu_book), label: 'Bacaan'),
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Beranda'),
