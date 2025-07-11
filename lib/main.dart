@@ -7,7 +7,6 @@ import 'profile_page.dart';
 import 'genre_page.dart';
 import 'bacaan_page.dart';
 import 'home_controller.dart'; // ✅ Tambahkan ini
-import 'pengaturan_akun.dart';
 
 
 void main() {
