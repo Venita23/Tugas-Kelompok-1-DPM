@@ -1,10 +1,20 @@
 import 'package:flutter/material.dart';
 
-class PreferensiBacaan extends StatelessWidget {
+class PreferensiBacaan extends StatefulWidget {
   const PreferensiBacaan({super.key});
 
   @override
+  State<PreferensiBacaan> createState() => _PreferensiBacaanState();
+}
+
+class _PreferensiBacaanState extends State<PreferensiBacaan> {
+  String? _selected; // 'pria' | 'wanita'
+
+  @override
   Widget build(BuildContext context) {
+    final double screenWidth = MediaQuery.of(context).size.width;
+    final double buttonWidth = (screenWidth - 56) / 2;
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -15,25 +25,11 @@ class PreferensiBacaan extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
-        title: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: const Color(0xFFFFE6E6),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x29000000),
-                blurRadius: 4,
-                offset: Offset(2, 4),
-              ),
-            ],
-          ),
-          child: const Text(
-            "Preferensi Bacaan",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+        title: const Text(
+          'Preferensi Bacaan',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -43,69 +39,99 @@ class PreferensiBacaan extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              "Pilih genre favorit Anda",
+              'Pilih genre favorit Anda',
               style: TextStyle(color: Colors.black54),
             ),
-            const SizedBox(height: 20),
-           Wrap(
-  spacing: 16,
-  runSpacing: 16,
-  children: [
-    buildGenreButton(
-      context: context,
-      label: "Cerita untuk pria",
-      color: Colors.blue.shade400,
-    ),
-    buildGenreButton(
-      context: context,
-      label: "Cerita untuk wanita",
-      color: Colors.pink.shade300,
-    ),
-  ],
-),
-
+            const SizedBox(height: 24),
+            Wrap(
+              spacing: 16,
+              children: [
+                _GenreButton(
+                  id: 'pria',
+                  label: 'Cerita untuk pria',
+                  color: Colors.blue.shade400,
+                  width: buttonWidth,
+                  isSelected: _selected == 'pria',
+                  onTap: () => setState(() => _selected = 'pria'),
+                ),
+                _GenreButton(
+                  id: 'wanita',
+                  label: 'Cerita untuk wanita',
+                  color: Colors.pink.shade400,
+                  width: buttonWidth,
+                  isSelected: _selected == 'wanita',
+                  onTap: () => setState(() => _selected = 'wanita'),
+                ),
+              ],
+            ),
           ],
         ),
       ),
     );
   }
-
- Widget buildGenreButton({
-  required BuildContext context,
-  required String label,
-  required Color color,
-}) {
-
-  final double screenWidth = MediaQuery.of(context).size.width;
-  final double buttonWidth = (screenWidth - 56) / 2; // 20 padding kiri + kanan + 16 spacing
-
-  return Container(
-    width: buttonWidth,
-    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
-    decoration: BoxDecoration(
-      color: color,
-      borderRadius: BorderRadius.circular(14),
-      boxShadow: const [
-        BoxShadow(
-          color: Colors.black26,
-          blurRadius: 4,
-          offset: Offset(2, 4),
-        ),
-      ],
-    ),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          label,
-          style: const TextStyle(color: Colors.white),
-        ),
-        const SizedBox(width: 6),
-        const Icon(Icons.check_circle, color: Colors.white),
-      ],
-    ),
-  );
 }
 
-  }
+class _GenreButton extends StatelessWidget {
+  const _GenreButton({
+    required this.id,
+    required this.label,
+    required this.color,
+    required this.width,
+    required this.isSelected,
+    required this.onTap,
+  });
 
+  final String id;
+  final String label;
+  final Color color;
+  final double width;
+  final bool isSelected;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final Color checkColor = isSelected
+        ? (id == 'pria' ? Colors.blue.shade700 : Colors.pink.shade700)
+        : Colors.white;
+
+    return InkWell(
+      borderRadius: BorderRadius.circular(22),
+      onTap: onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 200),
+        width: width,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24), // lebih tinggi
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(22),
+          boxShadow: isSelected
+              ? [
+                  const BoxShadow(
+                    color: Colors.black26,
+                    blurRadius: 6,
+                    offset: Offset(2, 4),
+                  ),
+                ]
+              : null,
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Flexible(
+              child: Text(
+                label,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w600,
+                ),
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
+            const SizedBox(width: 8),
+            Icon(Icons.check_circle, color: checkColor),
+          ],
+        ),
+      ),
+    );
+  }
+}
