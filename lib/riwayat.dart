@@ -15,25 +15,11 @@ class Riwayat extends StatelessWidget {
           onPressed: () => Navigator.pop(context),
         ),
         centerTitle: true,
-        title: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-          decoration: BoxDecoration(
-            color: const Color(0xFFFFE6E6),
-            borderRadius: BorderRadius.circular(20),
-            boxShadow: const [
-              BoxShadow(
-                color: Color(0x29000000),
-                blurRadius: 4,
-                offset: Offset(2, 4),
-              ),
-            ],
-          ),
-          child: const Text(
-            "Riwayat",
-            style: TextStyle(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-            ),
+        title: const Text(
+          "Riwayat",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),
@@ -54,30 +40,30 @@ class Riwayat extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.shade300,
-            blurRadius: 4,
-            offset: const Offset(2, 2),
-          ),
-        ],
+        // boxShadow dihapus untuk hilangkan efek shape
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text("08 Mei 2025", style: TextStyle(fontWeight: FontWeight.bold)),
+          const Text(
+            "24 Juli 2025",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           const SizedBox(height: 10),
           Row(
             children: [
-              Image.asset("assets/logo_buku.png", width: 50, height: 50),
+              Image.asset("assets/logo_apk.png", width: 100, height: 100),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
-                    Text("Paket Premium per kuartal\nRp 40.000"),
-                    Text("Disc 15%\nRp 6.000"),
-                    Text("PPN 11%\nRp 3.740"),
+                    Text("Paket Premium per kuartal", style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("Rp 40.000"),
+                    Text("Disc 15%", style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("Rp 6.000"),
+                    Text("PPN 11%", style: TextStyle(fontWeight: FontWeight.bold)),
+                    Text("Rp3.740"),
                   ],
                 ),
               )
@@ -87,14 +73,26 @@ class Riwayat extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFE6E6),
+              color: const Color(0xFF003D82),
               borderRadius: BorderRadius.circular(10),
             ),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Total Pembayaran", style: TextStyle(fontWeight: FontWeight.bold)),
-                Text("Rp 37.740,00", style: TextStyle(fontWeight: FontWeight.bold)),
+                Text(
+                  "Total Pembayaran",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                Text(
+                  "Rp 37.740,00",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
               ],
             ),
           ),
