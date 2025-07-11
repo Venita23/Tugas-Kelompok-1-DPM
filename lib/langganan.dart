@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 
-class LanggananPage extends StatelessWidget {
+class LanggananPage extends StatefulWidget {
   const LanggananPage({super.key});
+
+  @override
+  State<LanggananPage> createState() => _LanggananPageState();
+}
+
+class _LanggananPageState extends State<LanggananPage> {
+  String selectedPaket = "";
+  bool showPembayaran = false;
 
   @override
   Widget build(BuildContext context) {
@@ -28,69 +36,195 @@ class LanggananPage extends StatelessWidget {
         children: [
           const Text(
             "Nikmati pengalaman membaca dengan VIP ✨",
-            style: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 16),
 
-          // Pilihan Paket
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              PaketCard(
-                durasi: "Per minggu",
-                hargaDiskon: "Rp 4.250",
-                hargaAsli: "Rp 5.000",
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedPaket = "minggu";
+                        showPembayaran = false;
+                      });
+                    },
+                    child: PaketCard(
+                      durasi: "Per minggu",
+                      hargaDiskon: "Rp 4.250",
+                      hargaAsli: "Rp 5.000",
+                      isSelected: selectedPaket == "minggu",
+                    ),
+                  ),
+                ),
               ),
-              PaketCard(
-                durasi: "Per bulan",
-                hargaDiskon: "Rp 12.750",
-                hargaAsli: "Rp 15.000",
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedPaket = "bulan";
+                        showPembayaran = false;
+                      });
+                    },
+                    child: PaketCard(
+                      durasi: "Per bulan",
+                      hargaDiskon: "Rp 12.750",
+                      hargaAsli: "Rp 15.000",
+                      isSelected: selectedPaket == "bulan",
+                    ),
+                  ),
+                ),
               ),
-              PaketCard(
-                durasi: "Per kuartal",
-                hargaDiskon: "Rp 34.000",
-                hargaAsli: "Rp 40.000",
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedPaket = "kuartal";
+                        showPembayaran = false;
+                      });
+                    },
+                    child: PaketCard(
+                      durasi: "Per kuartal",
+                      hargaDiskon: "Rp 34.000",
+                      hargaAsli: "Rp 40.000",
+                      isSelected: selectedPaket == "kuartal",
+                    ),
+                  ),
+                ),
               ),
             ],
           ),
 
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
 
-          // Manfaat VIP
+          if (selectedPaket == "kuartal") ...[
+            GestureDetector(
+              onTap: () {
+                setState(() {
+                  showPembayaran = true;
+                });
+              },
+              child: Container(
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.orange.shade50,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: Colors.orange),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    Text(
+                      "Rp 34.000 / Per kuartal",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    Text(
+                      "Langganan Sekarang!!!",
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+
+            if (showPembayaran) ...[
+              const SizedBox(height: 12),
+              Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.grey.shade100,
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "GOOGLE PLAY",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, color: Colors.black54),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text("Mulai dengan menambahkan metode Pembayaran"),
+                    const SizedBox(height: 16),
+
+                    buildPaymentOption(Icons.phone_android, "Tambahkan penagihan Telkomsel"),
+                    buildPaymentOption(Icons.credit_card, "Tambahkan kartu kredit atau debit"),
+                    buildPaymentOption(Icons.qr_code, "Tukar kode"),
+                    buildPaymentOption(Icons.account_balance_wallet, "Tambahkan DOKU"),
+
+                    const SizedBox(height: 12),
+
+                    buildPromoCard(
+                      "Tambahkan GoPay",
+                      "Cashback 50% (hingga Rp 20.000) dari GoPay setelah pembelian pertama Anda sebesar Rp 5.000 atau lebih. Persyaratan GoPay berlaku.",
+                      icon: Icons.account_balance_wallet,
+                      color: Colors.blue.shade50,
+                    ),
+
+                    const SizedBox(height: 12),
+
+                    buildPromoCard(
+                      "Tambahkan ShopeePay",
+                      "Cashback 75% (hingga Rp 24.000) dari ShopeePay saat pembelian pertama Anda sebesar Rp 15.000 atau lebih. Persyaratan ShopeePay berlaku.",
+                      icon: Icons.shopping_cart,
+                      color: Colors.orange.shade50,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ],
+
+          const SizedBox(height: 24),
           const Text(
             "Manfaat pembaca VIP",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
-            ),
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
           ),
           const SizedBox(height: 12),
 
           Row(
             children: const [
-              Expanded(child: PaketBenefitCard(
-                title: "Paket Gratis",
-                items: [
-                  "Jeda iklan",
-                  "Unduh terbatas",
-                  "Kunci konten: -"
-                ],
-                isVip: false,
-              )),
-              SizedBox(width: 12),
-              Expanded(child: PaketBenefitCard(
-                title: "Paket VIP 👑",
-                items: [
-                  "Bebas iklan",
-                  "Unduh tak terbatas",
-                  "Kunci konten terbuka",
-                  "Lencana VIP eksklusif"
-                ],
-                isVip: true,
-              )),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6),
+                  child: PaketBenefitCard(
+                    title: "Paket Gratis",
+                    items: [
+                      "Jeda iklan",
+                      "Unduh terbatas",
+                      "Kunci konten: -",
+                      " ",
+                    ],
+                    isVip: false,
+                  ),
+                ),
+              ),
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6),
+                  child: PaketBenefitCard(
+                    title: "Paket VIP 👑",
+                    items: [
+                      "Bebas iklan",
+                      "Unduh tak terbatas",
+                      "Kunci konten terbuka",
+                      "Lencana VIP eksklusif",
+                    ],
+                    isVip: true,
+                  ),
+                ),
+              ),
             ],
           ),
 
@@ -108,41 +242,96 @@ class LanggananPage extends StatelessWidget {
       ),
     );
   }
+
+  Widget buildPaymentOption(IconData icon, String title) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        border: Border.all(color: Colors.black12),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        children: [
+          Icon(icon, size: 20),
+          const SizedBox(width: 12),
+          Text(title),
+        ],
+      ),
+    );
+  }
+
+  Widget buildPromoCard(String title, String desc,
+      {required IconData icon, required Color color}) {
+    return Container(
+      padding: const EdgeInsets.all(12),
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Icon(icon, size: 24),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
+                const SizedBox(height: 4),
+                Text(desc, style: const TextStyle(fontSize: 12)),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class PaketCard extends StatelessWidget {
   final String durasi;
   final String hargaDiskon;
   final String hargaAsli;
+  final bool isSelected;
 
   const PaketCard({
     super.key,
     required this.durasi,
     required this.hargaDiskon,
     required this.hargaAsli,
+    this.isSelected = false,
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 110,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Color(0xFFFFF4E0),
+        color: const Color(0xFFFFF4E0),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: Colors.orange.shade200),
+        border: Border.all(
+          color: isSelected ? Colors.deepOrange : Colors.orange.shade200,
+          width: isSelected ? 2 : 1,
+        ),
+        boxShadow: isSelected
+            ? [
+                BoxShadow(
+                  color: Colors.orange.withOpacity(0.2),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                )
+              ]
+            : [],
       ),
       child: Column(
         children: [
-          Text(
-            durasi,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
+          Text(durasi, style: const TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 4),
-          Text(
-            hargaDiskon,
-            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-          ),
+          Text(hargaDiskon,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
           const SizedBox(height: 4),
           Text(
             hargaAsli,
@@ -159,10 +348,8 @@ class PaketCard extends StatelessWidget {
               color: Colors.red.shade100,
               borderRadius: BorderRadius.circular(8),
             ),
-            child: const Text(
-              "Disc 15%",
-              style: TextStyle(color: Colors.red, fontSize: 12),
-            ),
+            child: const Text("Disc 15%",
+                style: TextStyle(color: Colors.red, fontSize: 12)),
           ),
         ],
       ),
@@ -185,24 +372,29 @@ class PaketBenefitCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 160,
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: isVip ? Color(0xFFFFF8E1) : Color(0xFFF5F5F5),
+        color: isVip ? const Color(0xFFFFF8E1) : const Color(0xFFF5F5F5),
         borderRadius: BorderRadius.circular(12),
         border: Border.all(color: isVip ? Colors.amber : Colors.grey),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.bold),
-          ),
+          Text(title, style: const TextStyle(fontWeight: FontWeight.bold)),
           const SizedBox(height: 8),
-          ...items.map((item) => Padding(
-                padding: const EdgeInsets.symmetric(vertical: 2),
-                child: Text("• $item"),
-              )),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: items
+                  .map((item) => Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 2),
+                        child: Text("\u2022 $item"),
+                      ))
+                  .toList(),
+            ),
+          ),
         ],
       ),
     );
