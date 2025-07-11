@@ -9,6 +9,7 @@ import 'bacaan_page.dart';
 import 'home_controller.dart'; 
 
 
+
 void main() {
   runApp(const MyApp());
 }

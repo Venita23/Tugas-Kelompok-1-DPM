@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'pengaturan_akun.dart';
+import 'preferensi_bacaan.dart';
+import 'riwayat.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -81,10 +84,42 @@ class ProfilePage extends StatelessWidget {
 
               const SizedBox(height: 24),
               buildSettingsCard([
-                settingItem(Icons.settings, "Pengaturan Akun"),
-                settingItem(Icons.favorite_border, "Preferensi Bacaan"),
+                ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Pengaturan Akun"),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PengaturanAkun()),
+                    );
+                  },
+                ),
+
+                ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Preferensi Bacaan"),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const PreferensiBacaan()),
+                    );
+                  },
+                ),
                 settingItem(Icons.subscriptions, "Langganan"),
-                settingItem(Icons.history, "Riwayat"),
+
+                 ListTile(
+                leading: const Icon(Icons.settings),
+                title: const Text("Riwayat"),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Riwayat()),
+                    );
+                  },
+                ),
               ]),
               const SizedBox(height: 12),
               buildSettingsCard([
