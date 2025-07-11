@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'pengaturan_akun.dart';
 import 'preferensi_bacaan.dart';
 import 'riwayat.dart';
+import 'vip_page.dart'; // Pastikan ini ditambahkan
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -14,7 +15,6 @@ class ProfilePage extends StatelessWidget {
       "assets/Vimala.jpeg",
       "assets/StayWithMe.jpeg",
       "assets/CelestiaMenjadiPengantinKaisar.jpeg",
-      
     ];
 
     return Scaffold(
@@ -33,9 +33,26 @@ class ProfilePage extends StatelessWidget {
                   const SizedBox(width: 10),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
-                      Text("Venita Amelia ✒", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                      Text("VIP", style: TextStyle(color: Colors.red)),
+                    children: [
+                      const Text(
+                        "Venita Amelia ✒",
+                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => const VIPPage()),
+                          );
+                        },
+                        child: const Text(
+                          "VIP",
+                          style: TextStyle(
+                            color: Colors.red,
+                            decoration: TextDecoration.underline, // agar terlihat bisa diklik
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ],
@@ -66,7 +83,7 @@ class ProfilePage extends StatelessWidget {
                           BoxShadow(
                             color: Colors.black12,
                             blurRadius: 4,
-                            offset: Offset(2, 2),
+                            offset: const Offset(2, 2),
                           ),
                         ],
                       ),
@@ -85,38 +102,36 @@ class ProfilePage extends StatelessWidget {
               const SizedBox(height: 24),
               buildSettingsCard([
                 ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text("Pengaturan Akun"),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PengaturanAkun()),
+                  leading: const Icon(Icons.settings),
+                  title: const Text("Pengaturan Akun"),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PengaturanAkun()),
                     );
                   },
                 ),
-
                 ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text("Preferensi Bacaan"),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const PreferensiBacaan()),
+                  leading: const Icon(Icons.settings),
+                  title: const Text("Preferensi Bacaan"),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const PreferensiBacaan()),
                     );
                   },
                 ),
                 settingItem(Icons.subscriptions, "Langganan"),
-
-                 ListTile(
-                leading: const Icon(Icons.settings),
-                title: const Text("Riwayat"),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Riwayat()),
+                ListTile(
+                  leading: const Icon(Icons.settings),
+                  title: const Text("Riwayat"),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Riwayat()),
                     );
                   },
                 ),
@@ -157,7 +172,6 @@ class ProfilePage extends StatelessWidget {
       child: Column(children: children),
     );
   }
-  
 
   static Widget settingItem(IconData icon, String title) {
     return ListTile(
