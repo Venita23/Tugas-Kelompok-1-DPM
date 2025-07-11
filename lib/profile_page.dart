@@ -122,6 +122,7 @@ class ProfilePage extends StatelessWidget {
       child: Column(children: children),
     );
   }
+  
 
   static Widget settingItem(IconData icon, String title) {
     return ListTile(

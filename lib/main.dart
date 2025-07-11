@@ -6,7 +6,8 @@ import 'home_page.dart';
 import 'profile_page.dart';
 import 'genre_page.dart';
 import 'bacaan_page.dart';
-import 'home_controller.dart'; // ✅ Tambahkan ini
+import 'home_controller.dart'; 
+
 
 void main() {
   runApp(const MyApp());
