@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'payment.dart'; // Pastikan file ini ada di folder yang sama
 
 class LanggananPage extends StatefulWidget {
   const LanggananPage({super.key});
@@ -40,63 +41,49 @@ class _LanggananPageState extends State<LanggananPage> {
           ),
           const SizedBox(height: 16),
 
+          // Paket pilihan
           Row(
             children: [
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedPaket = "minggu";
-                        showPembayaran = false;
-                      });
-                    },
-                    child: PaketCard(
-                      durasi: "Per minggu",
-                      hargaDiskon: "Rp 4.250",
-                      hargaAsli: "Rp 5.000",
-                      isSelected: selectedPaket == "minggu",
-                    ),
-                  ),
+                child: PaketPilihan(
+                  durasi: "Per minggu",
+                  hargaDiskon: "Rp 4.250",
+                  hargaAsli: "Rp 5.000",
+                  selected: selectedPaket == "minggu",
+                  onTap: () {
+                    setState(() {
+                      selectedPaket = "minggu";
+                      showPembayaran = false;
+                    });
+                  },
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedPaket = "bulan";
-                        showPembayaran = false;
-                      });
-                    },
-                    child: PaketCard(
-                      durasi: "Per bulan",
-                      hargaDiskon: "Rp 12.750",
-                      hargaAsli: "Rp 15.000",
-                      isSelected: selectedPaket == "bulan",
-                    ),
-                  ),
+                child: PaketPilihan(
+                  durasi: "Per bulan",
+                  hargaDiskon: "Rp 12.750",
+                  hargaAsli: "Rp 15.000",
+                  selected: selectedPaket == "bulan",
+                  onTap: () {
+                    setState(() {
+                      selectedPaket = "bulan";
+                      showPembayaran = false;
+                    });
+                  },
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedPaket = "kuartal";
-                        showPembayaran = false;
-                      });
-                    },
-                    child: PaketCard(
-                      durasi: "Per kuartal",
-                      hargaDiskon: "Rp 34.000",
-                      hargaAsli: "Rp 40.000",
-                      isSelected: selectedPaket == "kuartal",
-                    ),
-                  ),
+                child: PaketPilihan(
+                  durasi: "Per kuartal",
+                  hargaDiskon: "Rp 34.000",
+                  hargaAsli: "Rp 40.000",
+                  selected: selectedPaket == "kuartal",
+                  onTap: () {
+                    setState(() {
+                      selectedPaket = "kuartal";
+                      showPembayaran = false;
+                    });
+                  },
                 ),
               ),
             ],
@@ -196,33 +183,22 @@ class _LanggananPageState extends State<LanggananPage> {
           Row(
             children: const [
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6),
-                  child: PaketBenefitCard(
-                    title: "Paket Gratis",
-                    items: [
-                      "Jeda iklan",
-                      "Unduh terbatas",
-                      "Kunci konten: -",
-                      " ",
-                    ],
-                    isVip: false,
-                  ),
+                child: PaketBenefitCard(
+                  title: "Paket Gratis",
+                  items: ["Jeda iklan", "Unduh terbatas", "Kunci konten: -"],
+                  isVip: false,
                 ),
               ),
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 6),
-                  child: PaketBenefitCard(
-                    title: "Paket VIP 👑",
-                    items: [
-                      "Bebas iklan",
-                      "Unduh tak terbatas",
-                      "Kunci konten terbuka",
-                      "Lencana VIP eksklusif",
-                    ],
-                    isVip: true,
-                  ),
+                child: PaketBenefitCard(
+                  title: "Paket VIP 👑",
+                  items: [
+                    "Bebas iklan",
+                    "Unduh tak terbatas",
+                    "Kunci konten terbuka",
+                    "Lencana VIP eksklusif"
+                  ],
+                  isVip: true,
                 ),
               ),
             ],
@@ -244,20 +220,30 @@ class _LanggananPageState extends State<LanggananPage> {
   }
 
   Widget buildPaymentOption(IconData icon, String title) {
-    return Container(
-      margin: const EdgeInsets.symmetric(vertical: 4),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(color: Colors.black12),
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Row(
-        children: [
-          Icon(icon, size: 20),
-          const SizedBox(width: 12),
-          Text(title),
-        ],
+    return GestureDetector(
+      onTap: () {
+        if (title == "Tambahkan penagihan Telkomsel") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const TelkomselGooglePayment()),
+          );
+        }
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 4),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.black12),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Row(
+          children: [
+            Icon(icon, size: 20),
+            const SizedBox(width: 12),
+            Text(title),
+          ],
+        ),
       ),
     );
   }
@@ -291,67 +277,66 @@ class _LanggananPageState extends State<LanggananPage> {
   }
 }
 
-class PaketCard extends StatelessWidget {
+class PaketPilihan extends StatelessWidget {
   final String durasi;
   final String hargaDiskon;
   final String hargaAsli;
-  final bool isSelected;
+  final bool selected;
+  final VoidCallback onTap;
 
-  const PaketCard({
+  const PaketPilihan({
     super.key,
     required this.durasi,
     required this.hargaDiskon,
     required this.hargaAsli,
-    this.isSelected = false,
+    required this.selected,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        color: const Color(0xFFFFF4E0),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: isSelected ? Colors.deepOrange : Colors.orange.shade200,
-          width: isSelected ? 2 : 1,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        padding: const EdgeInsets.all(12),
+        decoration: BoxDecoration(
+          color: const Color(0xFFFFF4E0),
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(
+            color: selected ? Colors.deepOrange : Colors.orange.shade200,
+            width: selected ? 2 : 1,
+          ),
+          boxShadow: selected
+              ? [BoxShadow(color: Colors.orange.withOpacity(0.2), blurRadius: 8)]
+              : [],
         ),
-        boxShadow: isSelected
-            ? [
-                BoxShadow(
-                  color: Colors.orange.withOpacity(0.2),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                )
-              ]
-            : [],
-      ),
-      child: Column(
-        children: [
-          Text(durasi, style: const TextStyle(fontWeight: FontWeight.bold)),
-          const SizedBox(height: 4),
-          Text(hargaDiskon,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
-          const SizedBox(height: 4),
-          Text(
-            hargaAsli,
-            style: const TextStyle(
-              decoration: TextDecoration.lineThrough,
-              color: Colors.grey,
-              fontSize: 12,
+        child: Column(
+          children: [
+            Text(durasi, style: const TextStyle(fontWeight: FontWeight.bold)),
+            const SizedBox(height: 4),
+            Text(hargaDiskon,
+                style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+            const SizedBox(height: 4),
+            Text(
+              hargaAsli,
+              style: const TextStyle(
+                decoration: TextDecoration.lineThrough,
+                color: Colors.grey,
+                fontSize: 12,
+              ),
             ),
-          ),
-          const SizedBox(height: 4),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
-            decoration: BoxDecoration(
-              color: Colors.red.shade100,
-              borderRadius: BorderRadius.circular(8),
+            const SizedBox(height: 4),
+            Container(
+              padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 8),
+              decoration: BoxDecoration(
+                color: Colors.red.shade100,
+                borderRadius: BorderRadius.circular(8),
+              ),
+              child: const Text("Disc 15%", style: TextStyle(color: Colors.red, fontSize: 12)),
             ),
-            child: const Text("Disc 15%",
-                style: TextStyle(color: Colors.red, fontSize: 12)),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -373,6 +358,7 @@ class PaketBenefitCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 160,
+      margin: const EdgeInsets.symmetric(horizontal: 6),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: isVip ? const Color(0xFFFFF8E1) : const Color(0xFFF5F5F5),
@@ -387,12 +373,12 @@ class PaketBenefitCard extends StatelessWidget {
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: items
-                  .map((item) => Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 2),
-                        child: Text("\u2022 $item"),
-                      ))
-                  .toList(),
+              children: items.map((item) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 2),
+                  child: Text("\u2022 $item"),
+                );
+              }).toList(),
             ),
           ),
         ],
