@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'validasi.dart';
 
-class TelkomselGooglePayment extends StatefulWidget {
-  const TelkomselGooglePayment({super.key});
+class TelkomselGooglePayment1 extends StatefulWidget {
+  const TelkomselGooglePayment1({super.key});
 
   @override
-  State<TelkomselGooglePayment> createState() =>
-      _TelkomselGooglePaymentState();
+  State<TelkomselGooglePayment1> createState() =>
+      _TelkomselGooglePaymentState1();
 }
 
-class _TelkomselGooglePaymentState extends State<TelkomselGooglePayment> {
+class _TelkomselGooglePaymentState1 extends State<TelkomselGooglePayment1> {
   bool showPasswordField = false;
   bool passwordVisible = false;
   final TextEditingController passwordController = TextEditingController();
@@ -146,7 +146,7 @@ class _TelkomselGooglePaymentState extends State<TelkomselGooglePayment> {
                     children: const [
                       Text("MY NOVEL'S",
                           style: TextStyle(fontWeight: FontWeight.bold)),
-                      Text("Rp37.740,00",
+                      Text("Rp12.750,00",
                           style: TextStyle(fontWeight: FontWeight.bold)),
                     ],
                   ),

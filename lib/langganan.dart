@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'payment.dart'; // Pastikan file ini ada di folder yang sama
+import 'payment.dart';
+import 'payment_1.dart';
+import 'payment_2.dart';
 
 class LanggananPage extends StatefulWidget {
   const LanggananPage({super.key});
@@ -91,7 +93,10 @@ class _LanggananPageState extends State<LanggananPage> {
 
           const SizedBox(height: 16),
 
-          if (selectedPaket == "kuartal") ...[
+          // Tombol langganan
+          if (selectedPaket == "minggu" ||
+              selectedPaket == "bulan" ||
+              selectedPaket == "kuartal") ...[
             GestureDetector(
               onTap: () {
                 setState(() {
@@ -108,12 +113,16 @@ class _LanggananPageState extends State<LanggananPage> {
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
+                  children: [
                     Text(
-                      "Rp 34.000 / Per kuartal",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      selectedPaket == "minggu"
+                          ? "Rp 4.250 / Per minggu"
+                          : selectedPaket == "bulan"
+                              ? "Rp 12.750 / Per bulan"
+                              : "Rp 34.000 / Per kuartal",
+                      style: const TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    Text(
+                    const Text(
                       "Langganan Sekarang!!!",
                       style: TextStyle(
                         color: Colors.red,
@@ -185,7 +194,7 @@ class _LanggananPageState extends State<LanggananPage> {
               Expanded(
                 child: PaketBenefitCard(
                   title: "Paket Gratis",
-                  items: ["Jeda iklan", "Unduh terbatas", "Kunci konten: -"],
+                  items: ["Jeda iklan", "Unduh terbatas", "Kunci konten: "],
                   isVip: false,
                 ),
               ),
@@ -223,10 +232,22 @@ class _LanggananPageState extends State<LanggananPage> {
     return GestureDetector(
       onTap: () {
         if (title == "Tambahkan penagihan Telkomsel") {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => const TelkomselGooglePayment()),
-          );
+          if (selectedPaket == "minggu") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelkomselGooglePayment2()),
+            );
+          } else if (selectedPaket == "bulan") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelkomselGooglePayment1()),
+            );
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const TelkomselGooglePayment()),
+            );
+          }
         }
       },
       child: Container(
