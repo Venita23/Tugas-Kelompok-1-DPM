@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/genre_page.dart';
 import 'populer_page.dart';
 
 
@@ -47,11 +48,28 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Pilihan", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                Text("Lihat semua", style: TextStyle(color: Colors.red)),
+                const Text(
+                  "Pilihan",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Pindah ke halaman Populer
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const GenrePage(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "Lihat semua",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
