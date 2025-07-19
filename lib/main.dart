@@ -6,9 +6,7 @@ import 'home_page.dart';
 import 'profile_page.dart';
 import 'genre_page.dart';
 import 'bacaan_page.dart';
-import 'home_controller.dart'; 
-
-
+import 'home_controller.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,10 +17,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'UAS DPM',
       debugShowCheckedModeBanner: false,
-      home: NavigationHandler(),
+      home: const NavigationHandler(),
     );
   }
 }
@@ -32,13 +30,19 @@ class NavigationHandler extends StatefulWidget {
 
   @override
   State<NavigationHandler> createState() => _NavigationHandlerState();
+
+  static _NavigationHandlerState? of(BuildContext context) {
+    final state =
+        context.findAncestorStateOfType<_NavigationHandlerState>();
+    return state;
+  }
 }
 
 class _NavigationHandlerState extends State<NavigationHandler> {
   String _currentScreen = 'login';
   String? _loginMethod;
 
-  void _goTo(String screen, {String? method}) {
+  void goTo(String screen, {String? method}) {
     setState(() {
       _currentScreen = screen;
       _loginMethod = method;
@@ -50,21 +54,21 @@ class _NavigationHandlerState extends State<NavigationHandler> {
     switch (_currentScreen) {
       case 'login':
         return LoginPage(
-          onLogin: () => _goTo('main_home'),
-          onRegister: () => _goTo('register'),
+          onLogin: () => goTo('main_home'),
+          onRegister: () => goTo('register'),
         );
       case 'register':
         return RegisterPage(
-          onBack: () => _goTo('login'),
-          onRegister: () => _goTo('main_home'),
-          onGoogleTap: () => _goTo('account', method: 'Google'),
-          onFacebookTap: () => _goTo('account', method: 'Facebook'),
+          onBack: () => goTo('login'),
+          onRegister: () => goTo('main_home'),
+          onGoogleTap: () => goTo('account', method: 'Google'),
+          onFacebookTap: () => goTo('account', method: 'Facebook'),
         );
       case 'account':
         return AccountChoicePage(
           loginMethod: _loginMethod ?? 'Google',
-          onBack: () => _goTo('register'),
-          onAccountSelected: () => _goTo('main_home'),
+          onBack: () => goTo('register'),
+          onAccountSelected: () => goTo('main_home'),
         );
       case 'main_home':
         return MainScreen(initialIndex: 1);
@@ -87,7 +91,7 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   late int _selectedIndex;
-  late HomeController homeController; // ✅ controller untuk HomePage
+  late HomeController homeController;
 
   @override
   void initState() {
@@ -124,7 +128,12 @@ class _MainScreenState extends State<MainScreen> {
         },
       ),
       GenrePage(),
-      const ProfilePage(),
+      ProfilePage(
+        onLogout: () {
+          final handlerState = NavigationHandler.of(context);
+          handlerState?.goTo('login');
+        },
+      ),
     ];
 
     return Scaffold(
@@ -134,7 +143,7 @@ class _MainScreenState extends State<MainScreen> {
         type: BottomNavigationBarType.fixed,
         backgroundColor: const Color(0xFF003D82),
         currentIndex: _selectedIndex,
-        selectedItemColor: const Color.fromARGB(255,247,193,0),
+        selectedItemColor: const Color.fromARGB(255, 247, 193, 0),
         unselectedItemColor: const Color.fromARGB(255, 189, 189, 189),
         showUnselectedLabels: true,
         onTap: (index) => setState(() => _selectedIndex = index),
