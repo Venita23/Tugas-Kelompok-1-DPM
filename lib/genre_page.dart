@@ -166,21 +166,25 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Genre", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black)),
+            const Text("Genre", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             //const SizedBox(height: 80),
             TextField(
-              controller: _searchController,
-              decoration: const InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                hintText: 'Search...',
-                prefixIcon: Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(12)),
-                  borderSide: BorderSide.none,
-                ),
-              ),
-            ),
+  controller: _searchController,
+  decoration: InputDecoration(
+    hintText: "Search",
+    prefixIcon: const Icon(Icons.search, color: Color(0xFF003D82)),
+    contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+    enabledBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.0),
+      borderSide: const BorderSide(color: Color(0xFF003D82), width: 1.3),
+    ),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(12.0),
+      borderSide: const BorderSide(color: Color(0xFF003D82), width: 2),
+    ),
+  ),
+),
+
           ],
         ),
         toolbarHeight: 100,
