@@ -207,7 +207,7 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
   ),
   selected: selected,
   selectedColor: const Color.fromARGB(255, 0, 61, 130),
-  showCheckmark: false, // ← ini untuk menghilangkan centang
+  showCheckmark: false, // ← ini untuk menghilangkan centanggit 
  onSelected: (_) {
   setState(() {
     _tabController.animateTo(index);
