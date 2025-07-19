@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_page.dart';
 import 'pengaturan_akun.dart';
 import 'preferensi_bacaan.dart';
 import 'riwayat.dart';
@@ -122,7 +123,6 @@ class ProfilePage extends StatelessWidget {
                     );
                   },
                 ),
-                // Langganan VIP
                 ListTile(
                   leading: const Icon(Icons.workspace_premium_rounded, color: Color.fromARGB(255, 0, 0, 0)),
                   title: const Text('Langganan VIP'),
@@ -158,14 +158,34 @@ class ProfilePage extends StatelessWidget {
               ]),
 
               const SizedBox(height: 20),
+
+              // Tombol Logout
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(
+                      builder: (_) => LoginPage(
+                        onLogin: () {
+                          Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(
+                                builder: (_) => const ProfilePage()),
+                          );
+                        },
+                        onRegister: () {
+                          // Tambahkan navigasi register jika ada
+                        },
+                      ),
+                    ),
+                  );
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF003D82),
                   minimumSize: const Size(double.infinity, 50),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
                 ),
-                child: const Text('Log Out', style: TextStyle(color: Colors.white)),
+                child:
+                    const Text('Log Out', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
