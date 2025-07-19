@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   final VoidCallback onLogin;
   final VoidCallback onRegister;
 
@@ -9,6 +9,37 @@ class LoginPage extends StatelessWidget {
     required this.onLogin,
     required this.onRegister,
   });
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  bool isButtonEnabled = false;
+
+  void _validateFields() {
+    setState(() {
+      isButtonEnabled = _usernameController.text.isNotEmpty &&
+          _passwordController.text.isNotEmpty;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _usernameController.addListener(_validateFields);
+    _passwordController.addListener(_validateFields);
+  }
+
+  @override
+  void dispose() {
+    _usernameController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +66,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               TextField(
+                controller: _usernameController,
                 decoration: const InputDecoration(
                   labelText: "Username",
                   prefixIcon: Icon(Icons.person),
@@ -43,6 +75,7 @@ class LoginPage extends StatelessWidget {
               ),
               const SizedBox(height: 15),
               TextField(
+                controller: _passwordController,
                 obscureText: true,
                 decoration: const InputDecoration(
                   labelText: "Password",
@@ -55,7 +88,7 @@ class LoginPage extends StatelessWidget {
                 width: double.infinity,
                 height: 48,
                 child: ElevatedButton(
-                  onPressed: onLogin,
+                  onPressed: isButtonEnabled ? widget.onLogin : null,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF003D82),
                     shape: RoundedRectangleBorder(
@@ -71,7 +104,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 25),
               const Text("Apakah kamu punya akun?"),
               TextButton(
-                onPressed: onRegister,
+                onPressed: widget.onRegister,
                 child: const Text(
                   "Membuat Akun",
                   style: TextStyle(color: Colors.red),
