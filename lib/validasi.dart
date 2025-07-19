@@ -1,6 +1,6 @@
-// validasi.dart
+
 import 'package:flutter/material.dart';
-import 'profile_page.dart'; // pastikan file ini ada dan benar
+import 'profile_page.dart'; 
 
 class ValidasiPage extends StatelessWidget {
   const ValidasiPage({super.key});
@@ -48,7 +48,7 @@ class ValidasiPage extends StatelessWidget {
                   );
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.pinkAccent,
+                  backgroundColor: const Color(0xFF003D82),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),

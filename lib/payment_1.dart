@@ -104,15 +104,15 @@ class _TelkomselGooglePaymentState1 extends State<TelkomselGooglePayment1> {
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 12),
                         filled: true,
-                        fillColor: Colors.pink.shade50,
+                        fillColor: const Color.fromARGB(255, 206, 220, 237),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
                           borderSide:
-                              BorderSide(color: Colors.pink.shade300),
+                              BorderSide(color: const Color.fromARGB(255, 93, 166, 249)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Colors.pink),
+                          borderSide: const BorderSide(color: Color(0xFF003D82)),
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
@@ -157,7 +157,7 @@ class _TelkomselGooglePaymentState1 extends State<TelkomselGooglePayment1> {
                     width: double.infinity,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.pinkAccent,
+                        backgroundColor: const Color(0xFF003D82),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
