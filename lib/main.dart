@@ -6,11 +6,7 @@ import 'home_page.dart';
 import 'profile_page.dart';
 import 'genre_page.dart';
 import 'bacaan_page.dart';
-<<<<<<< HEAD
-import 'home_controller.dart'; 
-=======
 import 'home_controller.dart';
->>>>>>> 6e8824f8437d1811225042e90cf43e6f838f738c
 
 void main() {
   runApp(const MyApp());

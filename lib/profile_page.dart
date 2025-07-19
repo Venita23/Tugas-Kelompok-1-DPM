@@ -4,12 +4,7 @@ import 'preferensi_bacaan.dart';
 import 'riwayat.dart';
 import 'vip_page.dart';
 import 'langganan.dart';
-<<<<<<< HEAD
-import 'login_page.dart';
 import 'bacaan_page.dart';
-
-=======
->>>>>>> 6e8824f8437d1811225042e90cf43e6f838f738c
 
 class ProfilePage extends StatelessWidget {
   final VoidCallback? onLogout;
@@ -76,37 +71,27 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-<<<<<<< HEAD
-                  const Text('Bacaan Terakhir',
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const BacaanPage()),
-                      );
-                    },
-                    child: const Text(
-                      'Lihat semua',
-                      style: TextStyle(
-                        color: Colors.red,
-                        decoration: TextDecoration.underline,
-                      ),
-                    ),
-=======
-                  Text(
-                    'Bacaan Terakhir',
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Bacaan Terakhir',
+                    style: TextStyle(fontWeight: FontWeight.bold)),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const BacaanPage()),
+                    );
+                  },
+                  child: const Text(
                     'Lihat semua',
-                    style: TextStyle(color: Colors.red),
->>>>>>> 6e8824f8437d1811225042e90cf43e6f838f738c
+                    style: TextStyle(
+                      color: Colors.red,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
-                ],
-              ),
+                ),
+              ],
+            ),
 
               const SizedBox(height: 10),
               SizedBox(
@@ -210,26 +195,9 @@ class ProfilePage extends StatelessWidget {
               // ✅ Tombol Logout (menggunakan callback)
               ElevatedButton(
                 onPressed: () {
-<<<<<<< HEAD
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => LoginPage(
-                        onLogin: () {
-                          Navigator.pushReplacementNamed(context, '/home');
-                        },
-                        onRegister: () {
-                          Navigator.pushNamed(context, '/register');
-                        },
-                      ),
-                    ),
-                    (route) => false,
-                  );
-=======
                   if (onLogout != null) {
                     onLogout!();
                   }
->>>>>>> 6e8824f8437d1811225042e90cf43e6f838f738c
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF003D82),
