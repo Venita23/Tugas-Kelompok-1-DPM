@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'profile_page.dart'; 
+import 'main.dart'; 
 
 class ValidasiPage extends StatelessWidget {
   const ValidasiPage({super.key});
@@ -43,8 +43,8 @@ class ValidasiPage extends StatelessWidget {
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => const ProfilePage()),
-                    (route) => false, // menghapus semua page sebelumnya
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
+                    (route) => true, // menghapus semua page sebelumnya
                   );
                 },
                 style: ElevatedButton.styleFrom(
