@@ -112,7 +112,7 @@ class ProfilePage extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.settings),
+                  leading: const Icon(Icons.menu_book),
                   title: const Text('Preferensi Bacaan'),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {
@@ -135,7 +135,7 @@ class ProfilePage extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.settings),
+                  leading: const Icon(Icons.history),
                   title: const Text('Riwayat'),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {
