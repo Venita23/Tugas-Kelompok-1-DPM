@@ -113,7 +113,7 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         border: Border.all(color: Colors.black12),
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(0),
         color: Colors.white,
       ),
       child: Row(
@@ -159,15 +159,15 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFEEEEE),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFEEEEE),
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         elevation: 0,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Genre", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black)),
-            const SizedBox(height: 8),
+            //const SizedBox(height: 80),
             TextField(
               controller: _searchController,
               decoration: const InputDecoration(
@@ -184,35 +184,48 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
           ],
         ),
         toolbarHeight: 100,
-        bottom: TabBar(
-  controller: _tabController,
-  isScrollable: true,
-  indicator: BoxDecoration(
-    color: const Color.fromARGB(255, 0, 61, 130),
+        bottom: PreferredSize(
+  preferredSize: const Size.fromHeight(60),
+  child: Container(
+    alignment: Alignment.centerLeft,
+    margin: const EdgeInsets.only(left: 12, bottom: 8),
+    height: 50,
+    child: ListView.separated(
+      scrollDirection: Axis.horizontal,
+      itemCount: kategori.length,
+      separatorBuilder: (context, index) => const SizedBox(width: 8),
+      itemBuilder: (context, index) {
+        final genre = kategori[index];
+        final selected = _tabController.index == index;
+        return ChoiceChip(
+  label: Text(
+    genre,
+    style: TextStyle(
+      color: selected ? Colors.white : const Color.fromARGB(255, 0, 61, 130),
+      fontWeight: FontWeight.bold,
+    ),
+  ),
+  selected: selected,
+  selectedColor: const Color.fromARGB(255, 0, 61, 130),
+  showCheckmark: false, // ← ini untuk menghilangkan centang
+ onSelected: (_) {
+  setState(() {
+    _tabController.animateTo(index);
+  });
+},
+
+  shape: RoundedRectangleBorder(
+    side: const BorderSide(color: Color.fromARGB(255, 0, 61, 130), width: 1.5),
     borderRadius: BorderRadius.circular(20),
   ),
-  
-  labelPadding: const EdgeInsets.symmetric(horizontal: 2), // Jarak antar chip
-  labelColor: Colors.white,
-  unselectedLabelColor: const Color.fromARGB(255, 0, 61, 130),
-  unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
-  indicatorSize: TabBarIndicatorSize.label,
-  tabs: kategori.map((e) {
-    return Tab(
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10), // Ukuran chip
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: const Color.fromARGB(255, 0, 61, 130),
-            width: 1.5,
-          ),
-          borderRadius: BorderRadius.circular(20),
-        ),
-        child: Text(e),
-      ),
-    );
-  }).toList(),
+  backgroundColor: Colors.white,
+);
+
+      },
+    ),
+  ),
 ),
+
 
 
       ),
