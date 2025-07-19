@@ -4,12 +4,17 @@ import 'preferensi_bacaan.dart';
 import 'riwayat.dart';
 import 'vip_page.dart';
 import 'langganan.dart';
+<<<<<<< HEAD
 import 'login_page.dart';
 import 'bacaan_page.dart';
 
+=======
+>>>>>>> 6e8824f8437d1811225042e90cf43e6f838f738c
 
 class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+  final VoidCallback? onLogout;
+
+  const ProfilePage({super.key, this.onLogout});
 
   @override
   Widget build(BuildContext context) {
@@ -29,8 +34,10 @@ class ProfilePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text('Profil',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              const Text(
+                'Profil',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
               const SizedBox(height: 16),
               Row(
                 children: [
@@ -39,14 +46,20 @@ class ProfilePage extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text('Venita Amelia ✒',
-                          style: TextStyle(
-                              fontSize: 16, fontWeight: FontWeight.bold)),
+                      const Text(
+                        'Venita Amelia ✒',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (_) => const VIPPage()),
+                            MaterialPageRoute(
+                              builder: (_) => const VIPPage(),
+                            ),
                           );
                         },
                         child: const Text(
@@ -65,6 +78,7 @@ class ProfilePage extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+<<<<<<< HEAD
                   const Text('Bacaan Terakhir',
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   GestureDetector(
@@ -81,6 +95,15 @@ class ProfilePage extends StatelessWidget {
                         decoration: TextDecoration.underline,
                       ),
                     ),
+=======
+                  Text(
+                    'Bacaan Terakhir',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  Text(
+                    'Lihat semua',
+                    style: TextStyle(color: Colors.red),
+>>>>>>> 6e8824f8437d1811225042e90cf43e6f838f738c
                   ),
                 ],
               ),
@@ -107,13 +130,17 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(gambarBacaan[index], fit: BoxFit.cover),
+                        child: Image.asset(
+                          gambarBacaan[index],
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     );
                   },
                 ),
               ),
               const SizedBox(height: 24),
+
               buildSettingsCard([
                 ListTile(
                   leading: const Icon(Icons.settings),
@@ -122,7 +149,9 @@ class ProfilePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const PengaturanAkun()),
+                      MaterialPageRoute(
+                        builder: (_) => const PengaturanAkun(),
+                      ),
                     );
                   },
                 ),
@@ -133,18 +162,22 @@ class ProfilePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const PreferensiBacaan()),
+                      MaterialPageRoute(
+                        builder: (_) => const PreferensiBacaan(),
+                      ),
                     );
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.workspace_premium_rounded, color: Colors.black),
+                  leading: const Icon(Icons.workspace_premium_rounded),
                   title: const Text('Langganan VIP'),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const LanggananPage()),
+                      MaterialPageRoute(
+                        builder: (_) => const LanggananPage(),
+                      ),
                     );
                   },
                 ),
@@ -155,23 +188,29 @@ class ProfilePage extends StatelessWidget {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (_) => const Riwayat()),
+                      MaterialPageRoute(
+                        builder: (_) => const Riwayat(),
+                      ),
                     );
                   },
                 ),
               ]),
+
               const SizedBox(height: 12),
+
               buildSettingsCard([
                 settingItem(Icons.feedback_outlined, 'Bantuan & Umpan Balik'),
                 settingItem(Icons.info_outline, 'Tentang Aplikasi'),
                 settingItem(Icons.mail_outline, 'Kotak Masuk'),
                 settingItem(Icons.create_outlined, 'Menjadi Penulis'),
               ]),
+
               const SizedBox(height: 20),
 
-              // ✅ Tombol Log Out yang aktif
+              // ✅ Tombol Logout (menggunakan callback)
               ElevatedButton(
                 onPressed: () {
+<<<<<<< HEAD
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
@@ -186,6 +225,11 @@ class ProfilePage extends StatelessWidget {
                     ),
                     (route) => false,
                   );
+=======
+                  if (onLogout != null) {
+                    onLogout!();
+                  }
+>>>>>>> 6e8824f8437d1811225042e90cf43e6f838f738c
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF003D82),
@@ -194,7 +238,10 @@ class ProfilePage extends StatelessWidget {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
-                child: const Text('Log Out', style: TextStyle(color: Colors.white)),
+                child: const Text(
+                  'Log Out',
+                  style: TextStyle(color: Colors.white),
+                ),
               ),
             ],
           ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'populer_page.dart';
 
+
 class HomePage extends StatelessWidget {
   final TextEditingController searchController;
   final String selectedGenre;
@@ -173,7 +174,7 @@ class HomePage extends StatelessWidget {
                           children: [
                             Image.asset(
                               buku["gambar"]!,
-                              height: 300,
+                              height: 289,
                               width: double.infinity,
                               fit: BoxFit.cover,
                             ),
