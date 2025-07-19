@@ -192,14 +192,75 @@ class _PengaturanAkunState extends State<PengaturanAkun> {
             title: const Text("Tentang"),
             trailing: const Icon(Icons.chevron_right),
             onTap: () {
-              // Bisa tampilkan about app
-              showAboutDialog(
+              showDialog(
                 context: context,
-                applicationName: "MYNOVEL'S",
-                applicationVersion: "v1.0.0",
-                children: [
-                  const Text("MYNOVEL'S adalah aplikasi baca dan eksplorasi novel digital untuk generasi muda. Temukan berbagai genre, simpan daftar bacaan favorit, dan nikmati pengalaman membaca yang imersif."),
-                ],
+                builder: (context) {
+                  return AlertDialog(
+                    backgroundColor: Colors.white, // ✅ Dialog putih
+                    title: const Text(
+                      "MYNOVEL'S",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    content: const Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Versi: v1.0.0"),
+                        SizedBox(height: 8),
+                        Text(
+                          "MYNOVEL'S adalah aplikasi baca dan eksplorasi novel digital untuk generasi muda. "
+                          "Temukan berbagai genre, simpan daftar bacaan favorit, dan nikmati pengalaman membaca yang imersif.",
+                        ),
+                      ],
+                    ),
+                    actions: [
+                      // ✅ Tombol View Licenses
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context); // Tutup dialog dulu
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Theme(
+                                data: ThemeData(
+                                  colorScheme: const ColorScheme.light(
+                                    primary: Colors.black,
+                                    onPrimary: Colors.white,
+                                    surface: Colors.white,     // ✅ Sidebar & header putih
+                                    onSurface: Colors.black,   // ✅ Teks tetap hitam
+                                    background: Colors.white,  // ✅ Background putih
+                                    onBackground: Colors.black,
+                                  ),
+                                  scaffoldBackgroundColor: Colors.white,
+                                  appBarTheme: const AppBarTheme(
+                                    backgroundColor: Colors.white,
+                                    foregroundColor: Colors.black,
+                                    elevation: 0,
+                                  ),
+                                  textTheme: const TextTheme(
+                                    bodyMedium: TextStyle(color: Colors.black),
+                                    bodyLarge: TextStyle(color: Colors.black),
+                                  ),
+                                ),
+                                child: const LicensePage(
+                                  applicationName: "MYNOVEL'S",
+                                  applicationVersion: "v1.0.0",
+                                  applicationLegalese: "© 2025 MYNOVEL'S",
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                        child: const Text("Lihat lisensi"),
+                      ),
+                      // ✅ Tombol Tutup
+                      TextButton(
+                        onPressed: () => Navigator.pop(context),
+                        child: const Text("Tutup"),
+                      ),
+                    ],
+                  );
+                },
               );
             },
           ),
