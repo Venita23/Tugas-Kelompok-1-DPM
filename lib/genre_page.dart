@@ -185,16 +185,36 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
         ),
         toolbarHeight: 100,
         bottom: TabBar(
-          controller: _tabController,
-          isScrollable: true,
-          indicator: BoxDecoration(
+  controller: _tabController,
+  isScrollable: true,
+  indicator: BoxDecoration(
+    color: const Color.fromARGB(255, 0, 61, 130),
+    borderRadius: BorderRadius.circular(20),
+  ),
+  
+  labelPadding: const EdgeInsets.symmetric(horizontal: 2), // Jarak antar chip
+  labelColor: Colors.white,
+  unselectedLabelColor: const Color.fromARGB(255, 0, 61, 130),
+  unselectedLabelStyle: const TextStyle(fontWeight: FontWeight.bold),
+  indicatorSize: TabBarIndicatorSize.label,
+  tabs: kategori.map((e) {
+    return Tab(
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10), // Ukuran chip
+        decoration: BoxDecoration(
+          border: Border.all(
             color: const Color.fromARGB(255, 0, 61, 130),
-            borderRadius: BorderRadius.circular(20),
+            width: 1.5,
           ),
-          labelColor: Colors.white,
-          unselectedLabelColor: Colors.black,
-          tabs: kategori.map((e) => Tab(text: e)).toList(),
+          borderRadius: BorderRadius.circular(20),
         ),
+        child: Text(e),
+      ),
+    );
+  }).toList(),
+),
+
+
       ),
       body: _sedangMencari
           ? SingleChildScrollView(

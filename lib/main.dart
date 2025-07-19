@@ -132,10 +132,10 @@ class _MainScreenState extends State<MainScreen> {
       body: pages[_selectedIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
-        backgroundColor: const Color(0xFFFDF3FA),
+        backgroundColor: const Color(0xFF003D82),
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+        selectedItemColor: const Color.fromARGB(255,247,193,0),
+        unselectedItemColor: const Color.fromARGB(255, 189, 189, 189),
         showUnselectedLabels: true,
         onTap: (index) => setState(() => _selectedIndex = index),
         items: const [

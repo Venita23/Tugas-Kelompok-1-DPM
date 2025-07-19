@@ -54,20 +54,36 @@ class HomePage extends StatelessWidget {
             ),
             const SizedBox(height: 8),
             SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: bukuPilihan.keys.map((genre) {
-                  return Padding(
-                    padding: const EdgeInsets.only(right: 8.0),
-                    child: ChoiceChip(
-                      label: Text(genre),
-                      selected: selectedGenre == genre,
-                      onSelected: (_) => onGenreSelected(genre),
-                    ),
-                  );
-                }).toList(),
-              ),
+  scrollDirection: Axis.horizontal,
+  child: Row(
+    children: bukuPilihan.keys.map((genre) {
+      return Padding(
+        padding: const EdgeInsets.only(right: 8.0),
+        child: ChoiceChip(
+          label: Text(
+            genre,
+            style: TextStyle(
+              color: selectedGenre == genre ? Colors.white : const Color(0xFF003D82),
+              fontWeight: FontWeight.bold,
             ),
+          ),
+          selected: selectedGenre == genre,
+          selectedColor: const Color(0xFF003D82), // Warna saat chip terpilih
+          backgroundColor: Colors.white,          // Warna chip saat tidak dipilih
+          shape: StadiumBorder(
+            side: BorderSide(
+              color: const Color(0xFF003D82),
+              width: 1.5,
+            ),
+          ),
+           showCheckmark: false, // ← ini untuk menghilangkan centang
+          onSelected: (_) => onGenreSelected(genre),
+        ),
+      );
+    }).toList(),
+  ),
+),
+
             const SizedBox(height: 12),
             SizedBox(
               height: 160,
