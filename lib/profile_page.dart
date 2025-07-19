@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'login_page.dart';
 import 'pengaturan_akun.dart';
 import 'preferensi_bacaan.dart';
 import 'riwayat.dart';
 import 'vip_page.dart';
 import 'langganan.dart';
+import 'login_page.dart'; // Tambahkan ini
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -69,7 +69,6 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 10),
-              // Gambar Bacaan Terakhir
               SizedBox(
                 height: 160,
                 child: ListView.builder(
@@ -98,8 +97,6 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-
-              // ====== Kartu 1 ======
               buildSettingsCard([
                 ListTile(
                   leading: const Icon(Icons.settings),
@@ -124,7 +121,7 @@ class ProfilePage extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: const Icon(Icons.workspace_premium_rounded, color: Color.fromARGB(255, 0, 0, 0)),
+                  leading: const Icon(Icons.workspace_premium_rounded, color: Colors.black),
                   title: const Text('Langganan VIP'),
                   trailing: const Icon(Icons.chevron_right),
                   onTap: () {
@@ -146,46 +143,38 @@ class ProfilePage extends StatelessWidget {
                   },
                 ),
               ]),
-
               const SizedBox(height: 12),
-
-              // ====== Kartu 2 ======
               buildSettingsCard([
                 settingItem(Icons.feedback_outlined, 'Bantuan & Umpan Balik'),
                 settingItem(Icons.info_outline, 'Tentang Aplikasi'),
                 settingItem(Icons.mail_outline, 'Kotak Masuk'),
                 settingItem(Icons.create_outlined, 'Menjadi Penulis'),
               ]),
-
               const SizedBox(height: 20),
 
-              // Tombol Logout
+              // ✅ Tombol Log Out yang aktif
               ElevatedButton(
                 onPressed: () {
-                  Navigator.of(context).pushReplacement(
+                  // Logout ke halaman login, isi callback kosong
+                  Navigator.pushAndRemoveUntil(
+                    context,
                     MaterialPageRoute(
                       builder: (_) => LoginPage(
-                        onLogin: () {
-                          Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(
-                                builder: (_) => const ProfilePage()),
-                          );
-                        },
-                        onRegister: () {
-                          // Tambahkan navigasi register jika ada
-                        },
+                        onLogin: () {},
+                        onRegister: () {},
                       ),
                     ),
+                    (route) => false,
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF003D82),
                   minimumSize: const Size(double.infinity, 50),
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
-                child:
-                    const Text('Log Out', style: TextStyle(color: Colors.white)),
+                child: const Text('Log Out', style: TextStyle(color: Colors.white)),
               ),
             ],
           ),
@@ -194,7 +183,6 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  // ---------- Helpers ----------
   static Widget buildSettingsCard(List<Widget> children) {
     return Container(
       width: double.infinity,
