@@ -4,7 +4,9 @@ import 'preferensi_bacaan.dart';
 import 'riwayat.dart';
 import 'vip_page.dart';
 import 'langganan.dart';
-import 'login_page.dart'; // Tambahkan ini
+import 'login_page.dart';
+import 'bacaan_page.dart';
+
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -60,14 +62,29 @@ class ProfilePage extends StatelessWidget {
                 ],
               ),
               const SizedBox(height: 24),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text('Bacaan Terakhir',
+                  const Text('Bacaan Terakhir',
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text('Lihat semua', style: TextStyle(color: Colors.red)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const BacaanPage()),
+                      );
+                    },
+                    child: const Text(
+                      'Lihat semua',
+                      style: TextStyle(
+                        color: Colors.red,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
                 ],
               ),
+
               const SizedBox(height: 10),
               SizedBox(
                 height: 160,
@@ -155,13 +172,16 @@ class ProfilePage extends StatelessWidget {
               // ✅ Tombol Log Out yang aktif
               ElevatedButton(
                 onPressed: () {
-                  // Logout ke halaman login, isi callback kosong
                   Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (_) => LoginPage(
-                        onLogin: () {},
-                        onRegister: () {},
+                        onLogin: () {
+                          Navigator.pushReplacementNamed(context, '/home');
+                        },
+                        onRegister: () {
+                          Navigator.pushNamed(context, '/register');
+                        },
                       ),
                     ),
                     (route) => false,
