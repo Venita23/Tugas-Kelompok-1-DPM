@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'populer_page.dart';
 
 
 class HomePage extends StatelessWidget {
@@ -131,11 +132,28 @@ class HomePage extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Populer", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-                Text("Lihat semua", style: TextStyle(color: Colors.red)),
+                const Text(
+                  "Populer",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                TextButton(
+                  onPressed: () {
+                    // Pindah ke halaman Populer
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PopulerPage(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    "Lihat semua",
+                    style: TextStyle(color: Colors.red),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 8),
