@@ -7,6 +7,7 @@ import 'profile_page.dart';
 import 'genre_page.dart';
 import 'bacaan_page.dart';
 import 'home_controller.dart';
+import 'detail_bacaan_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,20 +33,20 @@ class NavigationHandler extends StatefulWidget {
   State<NavigationHandler> createState() => _NavigationHandlerState();
 
   static _NavigationHandlerState? of(BuildContext context) {
-    final state =
-        context.findAncestorStateOfType<_NavigationHandlerState>();
-    return state;
+    return context.findAncestorStateOfType<_NavigationHandlerState>();
   }
 }
 
 class _NavigationHandlerState extends State<NavigationHandler> {
   String _currentScreen = 'login';
   String? _loginMethod;
+  Map<String, dynamic>? _selectedBacaan;
 
-  void goTo(String screen, {String? method}) {
+  void goTo(String screen, {String? method, Map<String, dynamic>? bacaan}) {
     setState(() {
       _currentScreen = screen;
       _loginMethod = method;
+      _selectedBacaan = bacaan;
     });
   }
 
@@ -71,9 +72,27 @@ class _NavigationHandlerState extends State<NavigationHandler> {
           onAccountSelected: () => goTo('main_home'),
         );
       case 'main_home':
-        return MainScreen(initialIndex: 1);
+        return MainScreen(
+          initialIndex: 1,
+          onOpenDetail: (bacaan) => goTo('detail', bacaan: bacaan),
+        );
       case 'main':
-        return const MainScreen();
+        return MainScreen(
+          onOpenDetail: (bacaan) => goTo('detail', bacaan: bacaan),
+        );
+      case 'detail':
+  final bacaan = _selectedBacaan;
+  if (bacaan != null) {
+    return DetailBacaanPage(
+      judul: bacaan['judul'] ?? 'Judul tidak tersedia',
+      gambar: bacaan['gambar'] ?? 'assets/default.png', // pastikan file ini ada
+      sinopsis: bacaan['deskripsi'] ?? 'Deskripsi tidak tersedia',
+    );
+  } else {
+    return const Center(child: Text("Bacaan tidak ditemukan."));
+  }
+
+
       default:
         return const Center(child: Text('Unknown screen'));
     }
@@ -82,8 +101,9 @@ class _NavigationHandlerState extends State<NavigationHandler> {
 
 class MainScreen extends StatefulWidget {
   final int initialIndex;
+  final Function(Map<String, dynamic>)? onOpenDetail;
 
-  const MainScreen({super.key, this.initialIndex = 1});
+  const MainScreen({super.key, this.initialIndex = 1, this.onOpenDetail});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -114,7 +134,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      const BacaanPage(),
+      BacaanPage(onOpenDetail: widget.onOpenDetail),
       HomePage(
         searchController: homeController.searchController,
         selectedGenre: homeController.selectedGenre,
@@ -127,7 +147,7 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
       ),
-      GenrePage(),
+      const GenrePage(),
       ProfilePage(
         onLogout: () {
           final handlerState = NavigationHandler.of(context);

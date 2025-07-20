@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class BacaanPage extends StatefulWidget {
-  const BacaanPage({super.key});
+  final void Function(Map<String, dynamic>)? onOpenDetail;
+
+  const BacaanPage({super.key, this.onOpenDetail});
 
   @override
   State<BacaanPage> createState() => _BacaanPageState();
@@ -206,7 +208,7 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
               style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            ...List<Widget>.from(kategori["items"].map((item) {
+            ...List<Widget>.from(kategori["items"].map<Widget>((item) {
               return Card(
                 elevation: 2,
                 margin: const EdgeInsets.symmetric(vertical: 6),
@@ -239,7 +241,11 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
                       ),
                       const SizedBox(width: 8),
                       ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (widget.onOpenDetail != null) {
+                            widget.onOpenDetail!(item);
+                          }
+                        },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: const Color.fromARGB(255, 179, 212, 255),
                           foregroundColor: Colors.black,
@@ -271,28 +277,19 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
         ),
         itemBuilder: (context, index) {
           final book = koleksi[index];
-          final isAddButton = book["image"] == "";
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               AspectRatio(
                 aspectRatio: 0.7,
-                child: isAddButton
-                    ? Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade300,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        child: const Icon(Icons.add, size: 40, color: Colors.grey),
-                      )
-                    : ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(
-                          book["image"]!,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    book["image"]!,
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               const SizedBox(height: 6),
               Text(
@@ -301,11 +298,10 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
-              if (!isAddButton)
-                Text(
-                  book["bab"]!,
-                  style: const TextStyle(fontSize: 11, color: Colors.grey),
-                ),
+              Text(
+                book["bab"]!,
+                style: const TextStyle(fontSize: 11, color: Colors.grey),
+              ),
             ],
           );
         },
