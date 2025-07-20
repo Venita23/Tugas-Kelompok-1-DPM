@@ -54,22 +54,30 @@ class _TelkomselGooglePaymentState2 extends State<TelkomselGooglePayment2> {
                   ),
                   const SizedBox(height: 12),
 
-                  const Text(
-                    "Tambahkan Telkomsel ke Google",
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 8),
-
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.account_circle,
-                          size: 16, color: Colors.black54),
-                      SizedBox(width: 4),
-                      Text("venitaamelia5@gmail.com",
-                          style: TextStyle(color: Colors.black54)),
-                    ],
+                  // Judul dan Email di tengah
+                  Center(
+                    child: Column(
+                      children: const [
+                        Text(
+                          "Tambahkan Telkomsel ke Google",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 8),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.account_circle,
+                                size: 16, color: Colors.black54),
+                            SizedBox(width: 4),
+                            Text("venitaamelia5@gmail.com",
+                                style: TextStyle(color: Colors.black54)),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
 
                   const Divider(height: 32),
@@ -107,12 +115,13 @@ class _TelkomselGooglePaymentState2 extends State<TelkomselGooglePayment2> {
                         fillColor: const Color.fromARGB(255, 206, 220, 237),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide:
-                              BorderSide(color: const Color.fromARGB(255, 93, 166, 249)),
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 93, 166, 249)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: const BorderSide(color: Color(0xFF003D82)),
+                          borderSide:
+                              const BorderSide(color: Color(0xFF003D82)),
                         ),
                         suffixIcon: IconButton(
                           icon: Icon(
