@@ -75,7 +75,7 @@ class _TelkomselGooglePaymentState1 extends State<TelkomselGooglePayment1> {
                                 size: 16, color: Colors.black54),
                             SizedBox(width: 4),
                             Text(
-                              "venitaamelia5@gmail.com",
+                              "veni819201__@gmail.com",
                               style: TextStyle(color: Colors.black54),
                             ),
                           ],
