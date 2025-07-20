@@ -46,10 +46,10 @@ class _TelkomselGooglePaymentState extends State<TelkomselGooglePayment> {
                   // Logo Google & Device
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.g_mobiledata, color: Colors.blue, size: 40),
-                      SizedBox(width: 8),
-                      Icon(Icons.smartphone, color: Colors.black, size: 32),
+                    children: [
+                      Image.asset('assets/google.png', height: 24),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.smartphone, color: Colors.black, size: 32),
                     ],
                   ),
                   const SizedBox(height: 12),
@@ -72,7 +72,7 @@ class _TelkomselGooglePaymentState extends State<TelkomselGooglePayment> {
                             Icon(Icons.account_circle,
                                 size: 16, color: Colors.black54),
                             SizedBox(width: 4),
-                            Text("venitaaa@gmail.com",
+                            Text("veni@gmail.com",
                                 style: TextStyle(color: Colors.black54)),
                           ],
                         ),
@@ -112,12 +112,11 @@ class _TelkomselGooglePaymentState extends State<TelkomselGooglePayment> {
                         contentPadding: const EdgeInsets.symmetric(
                             horizontal: 12, vertical: 12),
                         filled: true,
-                        fillColor:
-                            const Color.fromARGB(255, 206, 220, 237),
+                        fillColor: const Color.fromARGB(255, 206, 220, 237),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),
-                          borderSide: BorderSide(
-                              color: const Color.fromARGB(255, 93, 166, 249)),
+                          borderSide: const BorderSide(
+                              color: Color.fromARGB(255, 93, 166, 249)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(12),

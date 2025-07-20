@@ -46,10 +46,10 @@ class _TelkomselGooglePaymentState1 extends State<TelkomselGooglePayment1> {
                   // Logo Google & Device
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(Icons.g_mobiledata, color: Colors.blue, size: 40),
-                      SizedBox(width: 8),
-                      Icon(Icons.smartphone, color: Colors.black, size: 32),
+                    children: [
+                      Image.asset('assets/google.png', height: 24),
+                      const SizedBox(width: 8),
+                      const Icon(Icons.smartphone, color: Colors.black, size: 32),
                     ],
                   ),
                   const SizedBox(height: 12),
