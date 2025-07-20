@@ -9,6 +9,7 @@ import 'bacaan_page.dart';
 import 'home_controller.dart';
 import 'detail_bacaan_page.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -58,6 +59,7 @@ class _NavigationHandlerState extends State<NavigationHandler> {
           onLogin: () => goTo('main_home'),
           onRegister: () => goTo('register'),
         );
+
       case 'register':
         return RegisterPage(
           onBack: () => goTo('login'),
@@ -65,33 +67,36 @@ class _NavigationHandlerState extends State<NavigationHandler> {
           onGoogleTap: () => goTo('account', method: 'Google'),
           onFacebookTap: () => goTo('account', method: 'Facebook'),
         );
+
       case 'account':
         return AccountChoicePage(
           loginMethod: _loginMethod ?? 'Google',
           onBack: () => goTo('register'),
           onAccountSelected: () => goTo('main_home'),
         );
+
       case 'main_home':
         return MainScreen(
           initialIndex: 1,
           onOpenDetail: (bacaan) => goTo('detail', bacaan: bacaan),
         );
+
       case 'main':
         return MainScreen(
           onOpenDetail: (bacaan) => goTo('detail', bacaan: bacaan),
         );
-      case 'detail':
-  final bacaan = _selectedBacaan;
-  if (bacaan != null) {
-    return DetailBacaanPage(
-      judul: bacaan['judul'] ?? 'Judul tidak tersedia',
-      gambar: bacaan['gambar'] ?? 'assets/default.png', // pastikan file ini ada
-      sinopsis: bacaan['deskripsi'] ?? 'Deskripsi tidak tersedia',
-    );
-  } else {
-    return const Center(child: Text("Bacaan tidak ditemukan."));
-  }
 
+      case 'detail':
+        final bacaan = _selectedBacaan;
+        if (bacaan != null) {
+          return DetailBacaanPage(
+            judul: bacaan['judul'] ?? 'Judul tidak tersedia',
+            gambar: bacaan['gambar'] ?? 'assets/default.png',
+            sinopsis: bacaan['deskripsi'] ?? 'Deskripsi tidak tersedia',
+          );
+        } else {
+          return const Center(child: Text("Bacaan tidak ditemukan."));
+        }
 
       default:
         return const Center(child: Text('Unknown screen'));
