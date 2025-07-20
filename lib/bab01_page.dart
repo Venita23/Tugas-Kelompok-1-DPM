@@ -6,12 +6,12 @@ class Bab01Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF1F4),
+      backgroundColor: const Color.fromARGB(255, 240, 248, 255),
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFD9E2),
+        backgroundColor: const Color(0xFFB3D4FF),
         elevation: 0,
         title: const Text(
-          'Kinanti Asrama Dua Dunia',
+          'Kinanti Asmara Dua Dunia',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -39,6 +39,7 @@ class Bab01Page extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Card(
+                color: Colors.white, // <=== UBAH WARNA BACKGROUND CARD JADI PUTIH
                 elevation: 2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
