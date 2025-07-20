@@ -15,7 +15,7 @@ class DetailBacaanPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF1F4),
+      backgroundColor: const Color.fromARGB(255, 240, 248, 255),
       body: SafeArea(
         child: Column(
           children: [
@@ -25,7 +25,7 @@ class DetailBacaanPage extends StatelessWidget {
                 Container(
                   height: 240,
                   width: double.infinity,
-                  color: const Color(0xFFFFD9E2),
+                  color: const Color(0xFFB3D4FF),
                 ),
                 Positioned(
                   top: 16,
@@ -49,7 +49,7 @@ class DetailBacaanPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      gambar,
+                      'assets/KinantiAsmaraDuaDunia.jpeg',
                       width: 120,
                       height: 160,
                       fit: BoxFit.cover,
@@ -73,86 +73,98 @@ class DetailBacaanPage extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Statistik
-           // Sinopsis Box + Konten Button
-Padding(
-  padding: const EdgeInsets.symmetric(horizontal: 16),
-  child: Container(
-    width: double.infinity,
-    padding: const EdgeInsets.all(16),
-    decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(12),
-    ),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Text(
-          'Sinopsis:',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          sinopsis,
-          style: const TextStyle(fontSize: 14),
-        ),
-        const SizedBox(height: 16),
+            // Sinopsis & Deskripsi Box
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: Colors.grey.shade300,
+                    width: 1,
+                  ),
+                ),
+                child: Column(
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Sinopsis:',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    const Text(
+                    'Kinanti, wanita ini nyaris gila akibat pernikahannya yang batal digelar. '
+                    'Sebenarnya tidak batal, hanya saja disaat hari pernikahan tiba, ternyata pengantin perempuan '
+                    'yang seharusnya bersanding dengan Wira adalah Kinanti diganti dengan Citra, saudara sepupu Kinanti. '
+                    'Gunjingan dan hinaan yang dilontarkan kepada keluarga Kinanti membuat sang bapak yang bernama Hasan '
+                    'jatuh sakit kemudian meninggal dunia. Dalam keterpurukannya, seseorang datang menghibur Kinanti, '
+                    'bukan dari golongan manusia, tapi jin yang bernama Lindu Ajisangkanan.',
+                    textAlign: TextAlign.justify,
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black87,
+                    ),
+                  ),
+                    const SizedBox(height: 4),
+                    const SizedBox(height: 16),
 
-        // Konten Button
-        OutlinedButton(
-          style: OutlinedButton.styleFrom(
-            side: const BorderSide(color: Colors.grey),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-          onPressed: () {
-            // TODO: Navigasi ke konten bab
-          },
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Icon(Icons.menu_book, size: 18, color: Colors.black),
-              SizedBox(width: 8),
-              Expanded(
-                child: Text(
-                  'Konten',
-                  style: TextStyle(color: Colors.black),
+                    // Konten Button
+                    OutlinedButton(
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Colors.grey),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onPressed: () {
+                        // Navigasi ke halaman konten
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: const [
+                          Icon(Icons.menu_book, size: 18, color: Colors.black),
+                          SizedBox(width: 8),
+                          Expanded(
+                            child: Text(
+                              'Konten',
+                              style: TextStyle(color: Colors.black),
+                            ),
+                          ),
+                          Text(
+                            '150 Bab >',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Text(
-                '150 Bab >',
-                style: TextStyle(color: Colors.black),
-              ),
-            ],
-          ),
-        ),
-      ],
-    ),
-  ),
-),
-
+            ),
 
             const SizedBox(height: 16),
 
-            // Sinopsis Box
-           
-
             const Spacer(),
 
-            // Bawah: Konten dan Tombol
+            // Tombol Bawah
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Row(
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        // Aksi lanjut baca
+                      },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.pinkAccent,
+                        backgroundColor: const Color(0xFF003D82),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -168,7 +180,9 @@ Padding(
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      // Aksi favorite
+                    },
                     icon: const Icon(Icons.favorite_border),
                   )
                 ],
@@ -180,4 +194,3 @@ Padding(
     );
   }
 }
-
