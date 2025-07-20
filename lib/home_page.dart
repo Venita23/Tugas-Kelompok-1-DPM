@@ -57,7 +57,7 @@ class HomePage extends StatelessWidget {
                 ),
                 TextButton(
                   onPressed: () {
-                    // Pindah ke halaman Populer
+                    // Pindah ke halaman Pilihan
                     Navigator.push(
                       context,
                       MaterialPageRoute(
