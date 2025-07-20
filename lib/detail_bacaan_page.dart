@@ -97,7 +97,7 @@ class DetailBacaanPage extends StatelessWidget {
                       'yang seharusnya bersanding dengan Wira adalah Kinanti diganti dengan Citra, saudara sepupu Kinanti. '
                       'Gunjingan dan hinaan yang dilontarkan kepada keluarga Kinanti membuat sang bapak yang bernama Hasan '
                       'jatuh sakit kemudian meninggal dunia. Dalam keterpurukannya, seseorang datang menghibur Kinanti, '
-                      'bukan dari golongan manusia, tapi jin yang bernama Lindu Ajisangkanan.',
+                      'bukan dari golongan manusia, tapi jin yang bernama Lindu Ajisangkana.',
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         fontSize: 14,

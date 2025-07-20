@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'isibab_page.dart'; // Import halaman isi bab
 
 class Bab01Page extends StatelessWidget {
   const Bab01Page({super.key});
@@ -35,11 +36,13 @@ class Bab01Page extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 16),
+
+          // Daftar Bab
           Expanded(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Card(
-                color: Colors.white, // <=== UBAH WARNA BACKGROUND CARD JADI PUTIH
+                color: Colors.white,
                 elevation: 2,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -51,17 +54,12 @@ class Bab01Page extends StatelessWidget {
                     return ListTile(
                       title: Text("Bab ${index + 1}"),
                       onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: Text("Bab ${index + 1}"),
-                            content: const Text("Isi bab ini belum tersedia."),
-                            actions: [
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text("Tutup"),
-                              )
-                            ],
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => IsiBabPage(
+                              bab: "Bab ${index + 1}",
+                            ),
                           ),
                         );
                       },
