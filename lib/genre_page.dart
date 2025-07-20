@@ -167,7 +167,7 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text("Genre", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-            //const SizedBox(height: 80),
+            const SizedBox(height: 12),
             TextField(
   controller: _searchController,
   decoration: InputDecoration(

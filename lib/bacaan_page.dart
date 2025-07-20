@@ -241,6 +241,7 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
                       ),
                       const SizedBox(width: 8),
                       ElevatedButton(
+                        
                         onPressed: () {
                           if (widget.onOpenDetail != null) {
                             widget.onOpenDetail!(item);

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Bab01Page extends StatelessWidget {
-  final String judulBacaan;
-
-  const Bab01Page({super.key, required this.judulBacaan});
+  const Bab01Page({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +10,9 @@ class Bab01Page extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xFFFFD9E2),
         elevation: 0,
-        title: Text(
-          'Konten - $judulBacaan',
-          style: const TextStyle(color: Colors.black),
+        title: const Text(
+          'Kinanti Asrama Dua Dunia',
+          style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
         leading: IconButton(
