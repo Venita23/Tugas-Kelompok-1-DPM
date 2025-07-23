@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-class IsiBabPage extends StatelessWidget {
+class IsibabPage2 extends StatelessWidget {
   final String bab;
 
-  const IsiBabPage({super.key, required this.bab});
+  const IsibabPage2({super.key, required this.bab});
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class IsiBabPage extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     child: Text(
-                      // === Cerita panjang di sini ===
+                      // Cerita panjang
                       '"Kamu dengar sendiri Wira, bapaknya Kinanti itu mata duitan. Hidup miskin tapi minta mahar lima puluh juta, memangnya dia siapa?" Sambil masuk ke dalam rumah, bu Asih mengomel.\n\n'
                       '"Cuma tamatan sekolah dasar tapi minta mahar lima puluh juta. Pak Hasan memeras kita, kamu sadar nggak?" timpal pak Wisnu, bapaknya Wira.\n\n'
                       '"Belum nikah aja udah minta mahar uang lima puluh juta, minta segala perabotan rumah tangga lengkap. Mereka pikir kita ini toko?"\n\n'

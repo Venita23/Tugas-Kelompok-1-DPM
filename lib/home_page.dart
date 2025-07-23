@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_3/genre_page.dart';
 import 'populer_page.dart';
-
+import 'detail_bacaan_page1.dart';
 
 class HomePage extends StatelessWidget {
   final TextEditingController searchController;
@@ -31,6 +31,8 @@ class HomePage extends StatelessWidget {
           children: [
             const Text("Beranda", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
+
+            // Search Field
             TextField(
               controller: searchController,
               decoration: InputDecoration(
@@ -47,64 +49,57 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
+
             const SizedBox(height: 20),
-             Row(
+
+            // Pilihan Section
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Pilihan",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                const Text("Pilihan", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 TextButton(
                   onPressed: () {
-                    // Pindah ke halaman Pilihan
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const GenrePage(),
-                      ),
-                    );
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const GenrePage()));
                   },
-                  child: const Text(
-                    "Lihat semua",
-                    style: TextStyle(color: Colors.red),
-                  ),
+                  child: const Text("Lihat semua", style: TextStyle(color: Colors.red)),
                 ),
               ],
             ),
+
             const SizedBox(height: 8),
+
+            // Genre Chips
             SingleChildScrollView(
-  scrollDirection: Axis.horizontal,
-  child: Row(
-    children: bukuPilihan.keys.map((genre) {
-      return Padding(
-        padding: const EdgeInsets.only(right: 8.0),
-        child: ChoiceChip(
-          label: Text(
-            genre,
-            style: TextStyle(
-              color: selectedGenre == genre ? Colors.white : const Color(0xFF003D82),
-              fontWeight: FontWeight.bold,
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: bukuPilihan.keys.map((genre) {
+                  return Padding(
+                    padding: const EdgeInsets.only(right: 8.0),
+                    child: ChoiceChip(
+                      label: Text(
+                        genre,
+                        style: TextStyle(
+                          color: selectedGenre == genre ? Colors.white : const Color(0xFF003D82),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      selected: selectedGenre == genre,
+                      selectedColor: const Color(0xFF003D82),
+                      backgroundColor: Colors.white,
+                      shape: StadiumBorder(
+                        side: const BorderSide(color: Color(0xFF003D82), width: 1.5),
+                      ),
+                      showCheckmark: false,
+                      onSelected: (_) => onGenreSelected(genre),
+                    ),
+                  );
+                }).toList(),
+              ),
             ),
-          ),
-          selected: selectedGenre == genre,
-          selectedColor: const Color(0xFF003D82), // Warna saat chip terpilih
-          backgroundColor: Colors.white,          // Warna chip saat tidak dipilih
-          shape: StadiumBorder(
-            side: BorderSide(
-              color: const Color(0xFF003D82),
-              width: 1.5,
-            ),
-          ),
-           showCheckmark: false, // ← ini untuk menghilangkan centang
-          onSelected: (_) => onGenreSelected(genre),
-        ),
-      );
-    }).toList(),
-  ),
-),
 
             const SizedBox(height: 12),
+
+            // Filtered List (horizontal)
             SizedBox(
               height: 160,
               child: ListView.builder(
@@ -149,83 +144,92 @@ class HomePage extends StatelessWidget {
                 },
               ),
             ),
+
             const SizedBox(height: 20),
+
+            // Populer Section
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  "Populer",
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                ),
+                const Text("Populer", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                 TextButton(
                   onPressed: () {
-                    // Pindah ke halaman Populer
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const PopulerPage(),
-                      ),
-                    );
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const PopulerPage()));
                   },
-                  child: const Text(
-                    "Lihat semua",
-                    style: TextStyle(color: Colors.red),
-                  ),
+                  child: const Text("Lihat semua", style: TextStyle(color: Colors.red)),
                 ),
               ],
             ),
+
             const SizedBox(height: 8),
+
+            // Populer Grid
             GridView.count(
               crossAxisCount: 2,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               childAspectRatio: 0.7,
               children: bukuPopuler.map((buku) {
-                return Padding(
-                  padding: const EdgeInsets.all(6.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Stack(
-                          children: [
-                            Image.asset(
-                              buku["gambar"]!,
-                              height: 289,
-                              width: double.infinity,
-                              fit: BoxFit.cover,
-                            ),
-                            Positioned(
-                              top: 4,
-                              left: 4,
-                              child: CircleAvatar(
-                                radius: 12,
-                                backgroundColor: const Color(0xFFF7C100),
-                                child: Text(
-                                  "${bukuPopuler.indexOf(buku) + 1}",
-                                  style: const TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold,
+                return GestureDetector(
+                  onTap: () {
+                    // Navigasi ke halaman detail ketika buku populer diklik
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailBacaanPage1(
+                          judul: buku["judul"]!,
+                          gambar: buku["gambar"]!,
+                          sinopsis: buku["sinopsis"] ?? "Tidak ada sinopsis.",
+                        ),
+                      ),
+                    );
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(6.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: Stack(
+                            children: [
+                              Image.asset(
+                                buku["gambar"]!,
+                                height: 289,
+                                width: double.infinity,
+                                fit: BoxFit.cover,
+                              ),
+                              Positioned(
+                                top: 4,
+                                left: 4,
+                                child: CircleAvatar(
+                                  radius: 12,
+                                  backgroundColor: const Color(0xFFF7C100),
+                                  child: Text(
+                                    "${bukuPopuler.indexOf(buku) + 1}",
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 12,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 6),
-                      Text(
-                        buku["judul"]!,
-                        maxLines: 2,
-                        overflow: TextOverflow.ellipsis,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
+                        const SizedBox(height: 6),
+                        Text(
+                          buku["judul"]!,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 );
               }).toList(),
