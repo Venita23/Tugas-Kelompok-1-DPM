@@ -22,7 +22,8 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "penulis": "Vir & Sam",
           "bab": "129/150",
           "update": "Tiap Hari",
-          "info": "1 Bab belum dibaca"
+          "info": "1 Bab belum dibaca",
+          "deskripsi": "Kinanti nyaris gila karena batal menikah. Ia kemudian dihibur oleh jin Lindu Ajisangkana."
         },
         {
           "image": "assets/TheWorldOfImmortality.png",
@@ -30,7 +31,8 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "penulis": "Yunnii Parkk",
           "bab": "80",
           "update": "Tiap Hari",
-          "info": "47 Bab belum dibaca"
+          "info": "47 Bab belum dibaca",
+          "deskripsi": "Petualangan epik dalam dunia keabadian yang penuh rahasia dan kekuatan."
         },
         {
           "image": "assets/KebangkitanDewiApi.jpeg",
@@ -38,7 +40,8 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "penulis": "Yehana",
           "bab": "105",
           "update": "Tiap Hari",
-          "info": "1 Bab belum dibaca"
+          "info": "1 Bab belum dibaca",
+          "deskripsi": "Seorang gadis dengan kekuatan api mencari takdirnya di dunia yang kacau."
         },
       ]
     },
@@ -51,7 +54,8 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "penulis": "Vir & Sam",
           "bab": "75",
           "update": "Tiap Hari",
-          "info": "1 Bab belum dibaca"
+          "info": "1 Bab belum dibaca",
+          "deskripsi": "Kisah cinta spiritual antara dua jiwa yang terikat janji masa lalu."
         },
         {
           "image": "assets/IstriCantikSangPanglima.jpeg",
@@ -59,7 +63,8 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "penulis": "Araina",
           "bab": "100",
           "update": "Tiap Hari",
-          "info": "0 Bab belum dibaca"
+          "info": "0 Bab belum dibaca",
+          "deskripsi": "Wanita kuat yang dipersunting panglima perang, menghadapi intrik istana."
         },
         {
           "image": "assets/selirsangpangeran.jpeg",
@@ -67,7 +72,8 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "penulis": "Princeess Pefiz",
           "bab": "105",
           "update": "Seminggu Sekali",
-          "info": "25 Bab belum dibaca"
+          "info": "25 Bab belum dibaca",
+          "deskripsi": "Selir cerdas menghadapi kehidupan istana dan cinta terlarang."
         },
       ]
     },
@@ -80,7 +86,8 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "penulis": "Claudia Wilson",
           "bab": "50",
           "update": "Tiap Hari",
-          "info": "12 Bab belum dibaca"
+          "info": "12 Bab belum dibaca",
+          "deskripsi": "Cinta yang diuji oleh jarak, waktu, dan keadaan."
         },
         {
           "image": "assets/OurSecretLove.jpeg",
@@ -88,7 +95,8 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
           "penulis": "Claudia Wilson",
           "bab": "56",
           "update": "Tiap Hari",
-          "info": "15 Bab belum dibaca"
+          "info": "15 Bab belum dibaca",
+          "deskripsi": "Dua insan menyimpan rahasia cinta di tengah tekanan sosial."
         },
       ]
     },
@@ -241,7 +249,6 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
                       ),
                       const SizedBox(width: 8),
                       ElevatedButton(
-                        
                         onPressed: () {
                           if (widget.onOpenDetail != null) {
                             widget.onOpenDetail!(item);

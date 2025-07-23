@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
-import 'bab01_page.dart'; // pastikan file ini ada
+import 'bab01_page.dart';
 
 class DetailBacaanPage extends StatelessWidget {
   final String judul;
   final String gambar;
   final String sinopsis;
+  final VoidCallback? onBack;
 
   const DetailBacaanPage({
     super.key,
     required this.judul,
     required this.gambar,
     required this.sinopsis,
+    this.onBack,
   });
 
   @override
@@ -32,7 +34,13 @@ class DetailBacaanPage extends StatelessWidget {
                   left: 16,
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back),
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () {
+                      if (onBack != null) {
+                        onBack!(); // Navigasi balik ke BacaanPage dengan BottomNavigationBar
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
                   ),
                 ),
                 Positioned(
@@ -49,7 +57,7 @@ class DetailBacaanPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      'assets/KinantiAsmaraDuaDunia.jpeg',
+                      gambar,
                       width: 120,
                       height: 160,
                       fit: BoxFit.cover,
@@ -91,21 +99,15 @@ class DetailBacaanPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      'Kinanti, wanita ini nyaris gila akibat pernikahannya yang batal digelar. '
-                      'Sebenarnya tidak batal, hanya saja disaat hari pernikahan tiba, ternyata pengantin perempuan '
-                      'yang seharusnya bersanding dengan Wira adalah Kinanti diganti dengan Citra, saudara sepupu Kinanti. '
-                      'Gunjingan dan hinaan yang dilontarkan kepada keluarga Kinanti membuat sang bapak yang bernama Hasan '
-                      'jatuh sakit kemudian meninggal dunia. Dalam keterpurukannya, seseorang datang menghibur Kinanti, '
-                      'bukan dari golongan manusia, tapi jin yang bernama Lindu Ajisangkana.',
+                    Text(
+                      sinopsis,
                       textAlign: TextAlign.justify,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w600,
                         color: Colors.black87,
                       ),
                     ),
-                    const SizedBox(height: 4),
                     const SizedBox(height: 16),
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
@@ -144,7 +146,6 @@ class DetailBacaanPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -182,5 +183,3 @@ class DetailBacaanPage extends StatelessWidget {
     );
   }
 }
-
-

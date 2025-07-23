@@ -1,3 +1,4 @@
+// main.dart
 import 'package:flutter/material.dart';
 import 'login_page.dart';
 import 'register_page.dart';
@@ -8,7 +9,6 @@ import 'genre_page.dart';
 import 'bacaan_page.dart';
 import 'home_controller.dart';
 import 'detail_bacaan_page.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -42,12 +42,14 @@ class _NavigationHandlerState extends State<NavigationHandler> {
   String _currentScreen = 'login';
   String? _loginMethod;
   Map<String, dynamic>? _selectedBacaan;
+  int _tabIndex = 0;
 
-  void goTo(String screen, {String? method, Map<String, dynamic>? bacaan}) {
+  void goTo(String screen, {String? method, Map<String, dynamic>? bacaan, int? tabIndex}) {
     setState(() {
       _currentScreen = screen;
       _loginMethod = method;
       _selectedBacaan = bacaan;
+      if (tabIndex != null) _tabIndex = tabIndex;
     });
   }
 
@@ -83,6 +85,7 @@ class _NavigationHandlerState extends State<NavigationHandler> {
 
       case 'main':
         return MainScreen(
+          initialIndex: _tabIndex,
           onOpenDetail: (bacaan) => goTo('detail', bacaan: bacaan),
         );
 
@@ -91,8 +94,9 @@ class _NavigationHandlerState extends State<NavigationHandler> {
         if (bacaan != null) {
           return DetailBacaanPage(
             judul: bacaan['judul'] ?? 'Judul tidak tersedia',
-            gambar: bacaan['gambar'] ?? 'assets/default.png',
+            gambar: bacaan['image'] ?? 'assets/default.png',
             sinopsis: bacaan['deskripsi'] ?? 'Deskripsi tidak tersedia',
+            onBack: () => goTo('main', tabIndex: 0),
           );
         } else {
           return const Center(child: Text("Bacaan tidak ditemukan."));
