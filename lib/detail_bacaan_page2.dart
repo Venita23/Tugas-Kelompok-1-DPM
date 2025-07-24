@@ -1,12 +1,13 @@
+// detail_bacaan_page2.dart
 import 'package:flutter/material.dart';
-import 'bab01_page2.dart'; // pastikan file ini ada
+import 'main.dart'; // ← agar bisa akses NavigationHandler.of(context)
 
-class DetailBacaanPage2 extends StatelessWidget {
+class DetailBacaanPage extends StatelessWidget {
   final String judul;
   final String gambar;
   final String sinopsis;
 
-  const DetailBacaanPage2({
+  const DetailBacaanPage({
     super.key,
     required this.judul,
     required this.gambar,
@@ -32,7 +33,10 @@ class DetailBacaanPage2 extends StatelessWidget {
                   left: 16,
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back),
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () {
+                      final handler = NavigationHandler.of(context);
+                      handler?.goTo('main', tabIndex: 2); // kembali ke Genre
+                    },
                   ),
                 ),
                 Positioned(
@@ -62,10 +66,7 @@ class DetailBacaanPage2 extends StatelessWidget {
             Text(
               judul,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 12),
             Padding(
@@ -76,67 +77,34 @@ class DetailBacaanPage2 extends StatelessWidget {
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
-                  border: Border.all(
-                    color: Colors.grey.shade300,
-                    width: 1,
-                  ),
+                  border: Border.all(color: Colors.grey.shade300, width: 1),
                 ),
                 child: Column(
                   children: [
                     const Text(
                       'Sinopsis:',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 16,
-                      ),
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                     const SizedBox(height: 8),
-                    const Text(
-                      'Kinanti, wanita ini nyaris gila akibat pernikahannya yang batal digelar. '
-                      'Sebenarnya tidak batal, hanya saja disaat hari pernikahan tiba, ternyata pengantin perempuan '
-                      'yang seharusnya bersanding dengan Wira adalah Kinanti diganti dengan Citra, saudara sepupu Kinanti. '
-                      'Gunjingan dan hinaan yang dilontarkan kepada keluarga Kinanti membuat sang bapak yang bernama Hasan '
-                      'jatuh sakit kemudian meninggal dunia. Dalam keterpurukannya, seseorang datang menghibur Kinanti, '
-                      'bukan dari golongan manusia, tapi jin yang bernama Lindu Ajisangkana.',
+                    Text(
+                      sinopsis,
                       textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w600,
-                        color: Colors.black87,
-                      ),
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black87),
                     ),
-                    const SizedBox(height: 4),
                     const SizedBox(height: 16),
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Colors.grey),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Bab01Page2(),
-                          ),
-                        );
-                      },
+                      onPressed: () {},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
                           Icon(Icons.menu_book, size: 18, color: Colors.black),
                           SizedBox(width: 8),
-                          Expanded(
-                            child: Text(
-                              'Konten',
-                              style: TextStyle(color: Colors.black),
-                            ),
-                          ),
-                          Text(
-                            '150 Bab >',
-                            style: TextStyle(color: Colors.black),
-                          ),
+                          Expanded(child: Text('Konten', style: TextStyle(color: Colors.black))),
+                          Text('150 Bab >', style: TextStyle(color: Colors.black)),
                         ],
                       ),
                     ),
@@ -144,7 +112,6 @@ class DetailBacaanPage2 extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
             const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -155,16 +122,11 @@ class DetailBacaanPage2 extends StatelessWidget {
                       onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF003D82),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8),
-                        ),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
                       child: const Padding(
                         padding: EdgeInsets.symmetric(vertical: 12),
-                        child: Text(
-                          'Lanjut Baca',
-                          style: TextStyle(color: Colors.white),
-                        ),
+                        child: Text('Lanjut Baca', style: TextStyle(color: Colors.white)),
                       ),
                     ),
                   ),
@@ -172,7 +134,7 @@ class DetailBacaanPage2 extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(Icons.favorite_border),
-                  )
+                  ),
                 ],
               ),
             ),

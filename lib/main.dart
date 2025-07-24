@@ -8,7 +8,7 @@ import 'profile_page.dart';
 import 'genre_page.dart';
 import 'bacaan_page.dart';
 import 'home_controller.dart';
-import 'detail_bacaan_page.dart';
+import 'detail_bacaan_page2.dart';
 
 void main() {
   runApp(const MyApp());
@@ -96,7 +96,6 @@ class _NavigationHandlerState extends State<NavigationHandler> {
             judul: bacaan['judul'] ?? 'Judul tidak tersedia',
             gambar: bacaan['image'] ?? 'assets/default.png',
             sinopsis: bacaan['deskripsi'] ?? 'Deskripsi tidak tersedia',
-            onBack: () => goTo('main', tabIndex: 0),
           );
         } else {
           return const Center(child: Text("Bacaan tidak ditemukan."));
@@ -156,7 +155,7 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
       ),
-      const GenrePage(),
+      GenrePage(onOpenDetail: widget.onOpenDetail),
       ProfilePage(
         onLogout: () {
           final handlerState = NavigationHandler.of(context);

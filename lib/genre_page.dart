@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class GenrePage extends StatefulWidget {
-  const GenrePage({super.key});
+  final Function(Map<String, dynamic>)? onOpenDetail;
+  const GenrePage({super.key, this.onOpenDetail});
 
   @override
   State<GenrePage> createState() => _GenrePageState();
@@ -15,66 +16,55 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
 
   final Map<String, List<Map<String, String>>> semuaBacaan = {
     'Untuk Anda': [
-      {"judul": "Kinanti Asmara Dua Dunia", "penulis": "Vir & Sam", "bab": "150", "update": "Tiap Hari", "gambar": "assets/KinantiAsmaraDuaDunia.jpeg"},
-      {"judul": "The World Of Immortality", "penulis": "Yunnii Parkk", "bab": "80", "update": "Tiap Hari", "gambar": "assets/TheWorldOfImmortality.png"},
-      {"judul": "Santri Cantik Incaran Gus AL", "penulis": "Naylest", "bab": "100", "update": "Tiap Hari", "gambar": "assets/SantriCantikIncaranGusAL.png"},
-      {"judul": "Istri Cantik Sang Panglima", "penulis": "Araina", "bab": "100", "update": "Tiap Hari", "gambar": "assets/IstriCantikSangPanglima.jpeg"},
-      {"judul": "The Second Life of The Crown Princess", "penulis": "Wintersnow", "bab": "168", "update": "Tiap Hari", "gambar": "assets/TheSecondLifeofTheCrownPrincess.jpeg"},
-      {"judul": "Vimala (Janji Jiwa)", "penulis": "Vir & Sam", "bab": "75", "update": "Tiap Hari", "gambar": "assets/Vimala.jpeg"},
-      {"judul": "Istri Kecil Sang Bupati", "penulis": "Ulvaoslan", "bab": "75", "update": "Seminggu Sekali", "gambar": "assets/IstriKecilSangBupati.jpeg"},
-      {"judul": "Stay With Me", "penulis": "Claudia Wilson", "bab": "50", "update": "Seminggu Sekali", "gambar": "assets/StayWithMe.jpeg"},
-      {"judul": "Kebangkitan Dewi Api", "penulis": "Yehana", "bab": "105", "update": "Tiap Hari", "gambar": "assets/KebangkitanDewiApi.jpeg"},
-      {"judul": "Celestia Menjadi Pengantin Kaisar", "penulis": "Aluna Sty", "bab": "178", "update": "Seminggu Sekali", "gambar": "assets/CelestiaMenjadiPengantinKaisar.jpeg"},
+      {
+        "judul": "Kinanti Asmara Dua Dunia",
+        "penulis": "Vir & Sam",
+        "bab": "150",
+        "update": "Tiap Hari",
+        "gambar": "assets/KinantiAsmaraDuaDunia.jpeg",
+        "deskripsi": "Kinanti, wanita ini nyaris gila akibat pernikahannya yang batal..."
+      },
+      // Tambahkan bacaan lain dengan key 'deskripsi'
     ],
-    // genre lainnya tidak diubah...
-    // isi lengkap tetap seperti yang kamu kirim sebelumnya
     'Kerajaan': [
-      {"judul": "Istri Cantik Sang Panglima", "penulis": "Araina", "bab": "100", "update": "Tiap Hari", "gambar": "assets/IstriCantikSangPanglima.jpeg"},
-      {"judul": "Reinkarnasi Queen Mafia Menjadi Putri Duke", "penulis": "Amey MK", "bab": "100", "update": "Tiap Hari", "gambar": "assets/ReinkarnasiQueenMafiaMenjadiPutriDuke.jpeg"},
-      {"judul": "Moonlight", "penulis": "Enigma", "bab": "50", "update": "Tiap Hari", "gambar": "assets/moonlight.jpeg"},
-      {"judul": "Sword", "penulis": "Olivia Wilson", "bab": "75", "update": "Seminggu Dua kali", "gambar": "assets/sword.png"},
-      {"judul": "Jenderal Wanita Badas Menjadi Permaisuri Kejam", "penulis": "Luna Moo", "bab": "40", "update": "2 Hari", "gambar": "assets/JenderalWanitaBadasMenjadiPermaisuriKejam.jpeg"},
-      {"judul": "Jatuh Cinta Dengan Pangeran Licik", "penulis": "Nailaaa", "bab": "95", "update": "Seminggu Sekali", "gambar": "assets/JatuhCintadenganpangeranlicik.jpeg"},
-      {"judul": "Istri Kecil Sang Bupati", "penulis": "Ulvaoslan", "bab": "75", "update": "Seminggu Sekali", "gambar": "assets/IstriKecilSangBupati.jpeg"},
-      {"judul": "Kebangkitan Dewi Api", "penulis": "Yehana", "bab": "105", "update": "Tiap Hari", "gambar": "assets/KebangkitanDewiApi.jpeg"},
-      {"judul": "Reinkarnasi Menjadi Bayi ELF", "penulis": "Gekko_4", "bab": "67", "update": "Seminggu Dua Kali", "gambar": "assets//ReinkarnasiMenjadiBayiELF.jpeg"},
-      {"judul": "Celestia Menjadi Pengantin Kaisar", "penulis": "Aluna Sty", "bab": "178", "update": "Seminggu Sekali", "gambar": "assets/CelestiaMenjadiPengantinKaisar.jpeg"},
+      {
+        "judul": "Istri Cantik Sang Panglima",
+        "penulis": "Araina",
+        "bab": "100",
+        "update": "Tiap Hari",
+        "gambar": "assets/IstriCantikSangPanglima.jpeg",
+        "deskripsi": "Kisah cinta dan perjuangan di dalam kerajaan yang penuh intrik."
+      },
     ],
     'Romansa': [
-      {"judul": "Santri Cantik Incaran Gus AL", "penulis": "Naylest", "bab": "100", "update": "Tiap Hari", "gambar": "assets/SantriCantikIncaranGusAL.png"},
-      {"judul": "Love", "penulis": "Olivia Wilson", "bab": "100", "update": "Tiap Hari", "gambar": "assets/love.jpeg"},
-      {"judul": "A Love Worth Fightig For", "penulis": "Olivia Wilson", "bab": "200", "update": "Dua Hari Sekali", "gambar": "assets/aloveworthfightingfor.jpeg"},
-      {"judul": "The Story of One Love", "penulis": "Olivia Wilson", "bab": "145", "update": "Seminggu Sekali", "gambar": "assets/TheStoryofOneLove.jpeg"},
-      {"judul": "Alam dan Langit Sandykala", "penulis": "Debora Oline", "bab": "65", "update": "Tiap Hari", "gambar": "assets/AlamdanLangitSandykala.jpeg"},
-      {"judul": "Cinta Dalam Diam", "penulis": "Ailaaa", "bab": "60", "update": "Seminggu Sekali", "gambar": "assets/CintaDalamDiam.png"},
-      {"judul": "Kisah Kasih Senja", "penulis": "Lorna Alvarado", "bab": "85", "update": "Tiap Hari", "gambar": "assets/KisahKasihSenja.png"},
-      {"judul": "Harapan Baru", "penulis": "Itsuki Takashi", "bab": "150", "update": "Tiap Hari", "gambar": "assets/HarapanBaru.png"},
-      {"judul": "Love Story", "penulis": "Lorna Alvarado", "bab": "118", "update": "Tiap Hari", "gambar": "assets/LoveStory.jpeg"},
-      {"judul": "Our Secret Love", "penulis": "Claudia Wilson", "bab": "56", "update": "Tiap Hari", "gambar": "assets/OurSecretLove.jpeg"},
+      {
+        "judul": "Santri Cantik Incaran Gus AL",
+        "penulis": "Naylest",
+        "bab": "100",
+        "update": "Tiap Hari",
+        "gambar": "assets/SantriCantikIncaranGusAL.png",
+        "deskripsi": "Romansa unik antara santri dan seorang tokoh karismatik."
+      },
     ],
     'Fantasi': [
-      {"judul": "The World Of Immortality", "penulis": "Yunnii Parkk", "bab": "80", "update": "Tiap Hari", "gambar": "assets/TheWorldOfImmortality.png"},
-      {"judul": "The Second Life of The Crown Princess", "penulis": "Wintersnow", "bab": "168", "update": "Tiap Hari", "gambar": "assets/TheSecondLifeofTheCrownPrincess.jpeg"},
-      {"judul": "Demon In The Wood", "penulis": "Grishaverse", "bab": "100", "update": "Tiap Hari", "gambar": "assets/DemonInTheWood.jpeg"},
-      {"judul": "Windwitch", "penulis": "Susan Dennerd", "bab": "200", "update": "Seminggu", "gambar": "assets/Windwitch.jpeg"},
-      {"judul": "Harta Vaeran", "penulis": "Pratama Wirya", "bab": "65", "update": "Tiap Hari", "gambar": "assets/HartaVaeran.jpeg"},
-      {"judul": "The Muse", "penulis": "Jessie Burton", "bab": "120", "update": "Tiap Hari", "gambar": "assets/TheMuse.jpeg"},
-      {"judul": "The Son Neplune", "penulis": "Rick Riordan", "bab": "80", "update": "Tiap Hari", "gambar": "assets/TheSonNeptune.jpeg"},
-      {"judul": "Pendekar Syair Terkutuk", "penulis": "Rendra Harahap", "bab": "60", "update": "Dua Hari Sekali", "gambar": "assets/PendekarSyairTerkutuk.jpeg"},
-      {"judul": "The Poppy War Perang Opium", "penulis": "R. F. Kuang", "bab": "150", "update": "Tiap Hari", "gambar": "assets/ThePoppyWarPerangOpium.jpeg"},
-      {"judul": "Anak dari Desa yang Raib", "penulis": "Marina Saga", "bab": "44", "update": "Tiap Hari", "gambar": "assets/AnakdariDesayangRaib.jpeg"},
+      {
+        "judul": "The World Of Immortality",
+        "penulis": "Yunnii Parkk",
+        "bab": "80",
+        "update": "Tiap Hari",
+        "gambar": "assets/TheWorldOfImmortality.png",
+        "deskripsi": "Dunia abadi yang penuh misteri dan pertarungan antar ras."
+      },
     ],
     'Misteri': [
-      {"judul": "Kinanti Asmara Dua Dunia", "penulis": "Vir & Sam", "bab": "150", "update": "Tiap Hari", "gambar": "assets/KinantiAsmaraDuaDunia.jpeg"},
-      {"judul": "Sang Penerbang Di Taman Puisi", "penulis": "Briigitte Schwartz", "bab": "100", "update": "Tiap Hari", "gambar": "assets/SangPenerbangDiTamanPuisi.jpeg"},
-      {"judul": "Ahli Waris yang Tertukar", "penulis": "Ratu Peri", "bab": "100", "update": "Dua Hari Sekali", "gambar": "assets/AhliWarisyangTertukar.jpeg"},
-      {"judul": "The Last Element", "penulis": "Aroogadha", "bab": "100", "update": "Seminggu sekali", "gambar": "assets/TheLastElement.jpeg"},
-      {"judul": "Vimala (Janji Jiwa)", "penulis": "Vir & Sam", "bab": "75", "update": "Tiap Hari", "gambar": "assets/Vimala.jpeg"},
-      {"judul": "The  Vampire World", "penulis": "Vearth", "bab": "80", "update": "Tiap Hari", "gambar": "assets/TheVampireWorld.jpeg"},
-      {"judul": "Misteri Kehidupan", "penulis": "Ketut Susilo", "bab": "150", "update": "Seminggu Sekali", "gambar": "assets/MisteriKehidupan.png"},
-      {"judul": "Untuk Sisi Lain", "penulis": "Victoria Anggara", "bab": "69", "update": "Tiap Hari", "gambar": "assets/UntukSisiLain.jpeg"},
-      {"judul": "Walk Into The Shadow", "penulis": "Estelle Darcy", "bab": "138", "update": "Tiap Hari", "gambar": "assets/WalkIntoTheShadow.jpeg"},
-      {"judul": "Anak dari Desa yang Raib", "penulis": "Marina Saga", "bab": "44", "update": "Tiap Hari", "gambar": "assets/AnakdariDesayangRaib.jpeg"},
+      {
+        "judul": "The Last Element",
+        "penulis": "Aroogadha",
+        "bab": "100",
+        "update": "Seminggu sekali",
+        "gambar": "assets/TheLastElement.jpeg",
+        "deskripsi": "Sebuah elemen terakhir menjadi kunci masa depan dunia."
+      },
     ],
   };
 
@@ -139,7 +129,15 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
                 Text("Update ${data['update']}", style: const TextStyle(fontSize: 12)),
                 const SizedBox(height: 6),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    if (widget.onOpenDetail != null) {
+                      widget.onOpenDetail!({
+                        'judul': data['judul'],
+                        'image': data['gambar'],
+                        'deskripsi': data['deskripsi'] ?? 'Deskripsi belum tersedia',
+                      });
+                    }
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFB3D4FF),
                     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
@@ -169,69 +167,63 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
             const Text("Genre", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 12),
             TextField(
-  controller: _searchController,
-  decoration: InputDecoration(
-    hintText: "Search",
-    prefixIcon: const Icon(Icons.search, color: Color(0xFF003D82)),
-    contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
-    enabledBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12.0),
-      borderSide: const BorderSide(color: Color(0xFF003D82), width: 1.3),
-    ),
-    focusedBorder: OutlineInputBorder(
-      borderRadius: BorderRadius.circular(12.0),
-      borderSide: const BorderSide(color: Color(0xFF003D82), width: 2),
-    ),
-  ),
-),
-
+              controller: _searchController,
+              decoration: InputDecoration(
+                hintText: "Search",
+                prefixIcon: const Icon(Icons.search, color: Color(0xFF003D82)),
+                contentPadding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: const BorderSide(color: Color(0xFF003D82), width: 1.3),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12.0),
+                  borderSide: const BorderSide(color: Color(0xFF003D82), width: 2),
+                ),
+              ),
+            ),
           ],
         ),
         toolbarHeight: 100,
         bottom: PreferredSize(
-  preferredSize: const Size.fromHeight(60),
-  child: Container(
-    alignment: Alignment.centerLeft,
-    margin: const EdgeInsets.only(left: 12, bottom: 8),
-    height: 50,
-    child: ListView.separated(
-      scrollDirection: Axis.horizontal,
-      itemCount: kategori.length,
-      separatorBuilder: (context, index) => const SizedBox(width: 8),
-      itemBuilder: (context, index) {
-        final genre = kategori[index];
-        final selected = _tabController.index == index;
-        return ChoiceChip(
-  label: Text(
-    genre,
-    style: TextStyle(
-      color: selected ? Colors.white : const Color.fromARGB(255, 0, 61, 130),
-      fontWeight: FontWeight.bold,
-    ),
-  ),
-  selected: selected,
-  selectedColor: const Color.fromARGB(255, 0, 61, 130),
-  showCheckmark: false, // ← ini untuk menghilangkan centanggit 
- onSelected: (_) {
-  setState(() {
-    _tabController.animateTo(index);
-  });
-},
-
-  shape: RoundedRectangleBorder(
-    side: const BorderSide(color: Color.fromARGB(255, 0, 61, 130), width: 1.5),
-    borderRadius: BorderRadius.circular(20),
-  ),
-  backgroundColor: Colors.white,
-);
-
-      },
-    ),
-  ),
-),
-
-
-
+          preferredSize: const Size.fromHeight(60),
+          child: Container(
+            alignment: Alignment.centerLeft,
+            margin: const EdgeInsets.only(left: 12, bottom: 8),
+            height: 50,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: kategori.length,
+              separatorBuilder: (context, index) => const SizedBox(width: 8),
+              itemBuilder: (context, index) {
+                final genre = kategori[index];
+                final selected = _tabController.index == index;
+                return ChoiceChip(
+                  label: Text(
+                    genre,
+                    style: TextStyle(
+                      color: selected ? Colors.white : const Color.fromARGB(255, 0, 61, 130),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  selected: selected,
+                  selectedColor: const Color.fromARGB(255, 0, 61, 130),
+                  showCheckmark: false,
+                  onSelected: (_) {
+                    setState(() {
+                      _tabController.animateTo(index);
+                    });
+                  },
+                  shape: RoundedRectangleBorder(
+                    side: const BorderSide(color: Color.fromARGB(255, 0, 61, 130), width: 1.5),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  backgroundColor: Colors.white,
+                );
+              },
+            ),
+          ),
+        ),
       ),
       body: _sedangMencari
           ? SingleChildScrollView(
@@ -261,4 +253,4 @@ class _GenrePageState extends State<GenrePage> with SingleTickerProviderStateMix
     _tabController.dispose();
     super.dispose();
   }
-}  
+}
