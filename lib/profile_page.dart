@@ -5,6 +5,7 @@ import 'riwayat.dart';
 import 'vip_page.dart';
 import 'langganan.dart';
 import 'bacaan_page.dart';
+import 'detail_bacaan_page6.dart'; // ✅ Tambahkan ini
 
 class ProfilePage extends StatelessWidget {
   final VoidCallback? onLogout;
@@ -71,28 +72,27 @@ class ProfilePage extends StatelessWidget {
               ),
               const SizedBox(height: 24),
               Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text('Bacaan Terakhir',
-                    style: TextStyle(fontWeight: FontWeight.bold)),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (_) => const BacaanPage()),
-                    );
-                  },
-                  child: const Text(
-                    'Lihat semua',
-                    style: TextStyle(
-                      color: Colors.red,
-                      decoration: TextDecoration.underline,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Text('Bacaan Terakhir',
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => const BacaanPage()),
+                      );
+                    },
+                    child: const Text(
+                      'Lihat semua',
+                      style: TextStyle(
+                        color: Colors.red,
+                        decoration: TextDecoration.underline,
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-
+                ],
+              ),
               const SizedBox(height: 10),
               SizedBox(
                 height: 160,
@@ -115,9 +115,27 @@ class ProfilePage extends StatelessWidget {
                       ),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(8),
-                        child: Image.asset(
-                          gambarBacaan[index],
-                          fit: BoxFit.cover,
+                        child: GestureDetector(
+                          onTap: () {
+                            // ✅ Tambahkan logika untuk buku pertama (Kinanti)
+                            if (index == 0) {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) => DetailBacaanPage6(
+                                    judul: 'Kinanti Asmara Dua Dunia',
+                                    gambar: gambarBacaan[0],
+                                    sinopsis:
+                                        'Kinanti tersesat di antara dua dunia cinta dan takdir...',
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: Image.asset(
+                            gambarBacaan[index],
+                            fit: BoxFit.cover,
+                          ),
                         ),
                       ),
                     );
@@ -125,7 +143,6 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-
               buildSettingsCard([
                 ListTile(
                   leading: const Icon(Icons.settings),
@@ -180,19 +197,14 @@ class ProfilePage extends StatelessWidget {
                   },
                 ),
               ]),
-
               const SizedBox(height: 12),
-
               buildSettingsCard([
                 settingItem(Icons.feedback_outlined, 'Bantuan & Umpan Balik'),
                 settingItem(Icons.info_outline, 'Tentang Aplikasi'),
                 settingItem(Icons.mail_outline, 'Kotak Masuk'),
                 settingItem(Icons.create_outlined, 'Menjadi Penulis'),
               ]),
-
               const SizedBox(height: 20),
-
-              // ✅ Tombol Logout (menggunakan callback)
               ElevatedButton(
                 onPressed: () {
                   if (onLogout != null) {

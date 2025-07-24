@@ -12,7 +12,7 @@ class Bab01Page4 extends StatelessWidget {
         backgroundColor: const Color(0xFFB3D4FF),
         elevation: 0,
         title: const Text(
-          'Kinanti Asmara Dua Dunia',
+          'Santri Cantik Incaran Gus AL',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
@@ -28,7 +28,7 @@ class Bab01Page4 extends StatelessWidget {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(12),
               child: Image.asset(
-                'assets/KinantiAsmaraDuaDunia.jpeg',
+                'assets/SantriCantikIncaranGusAL.png',
                 width: 100,
                 height: 140,
                 fit: BoxFit.cover,
@@ -49,7 +49,7 @@ class Bab01Page4 extends StatelessWidget {
                 ),
                 child: ListView.builder(
                   padding: const EdgeInsets.symmetric(vertical: 10),
-                  itemCount: 150,
+                  itemCount: 100,
                   itemBuilder: (context, index) {
                     return ListTile(
                       title: Text("Bab ${index + 1}"),

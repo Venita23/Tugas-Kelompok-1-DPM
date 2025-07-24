@@ -72,7 +72,7 @@ class _TelkomselGooglePaymentState extends State<TelkomselGooglePayment> {
                             Icon(Icons.account_circle,
                                 size: 16, color: Colors.black54),
                             SizedBox(width: 4),
-                            Text("veni@gmail.com",
+                            Text("venitaaa@gmail.com",
                                 style: TextStyle(color: Colors.black54)),
                           ],
                         ),

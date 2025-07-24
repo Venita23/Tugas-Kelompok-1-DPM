@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_3/main.dart';
+
+void main(){
+  runApp(const MyApp());
+}
 
 class DetailBacaanPage extends StatelessWidget {
   final String judul;
@@ -49,7 +54,7 @@ class DetailBacaanPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      'assets/IstriCantikSangPanglima.jpeg',
+                      'assets/TheWorldOfImmortality.png',
                       width: 120,
                       height: 160,
                       fit: BoxFit.cover,

@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'bab01_page6.dart';
 
-class DetailBacaanPage extends StatelessWidget {
+class DetailBacaanPage6 extends StatelessWidget {
   final String judul;
   final String gambar;
   final String sinopsis;
+  final VoidCallback? onBack;
 
-  const DetailBacaanPage({
+  const DetailBacaanPage6({
     super.key,
     required this.judul,
     required this.gambar,
     required this.sinopsis,
+    this.onBack,
   });
 
   @override
@@ -19,7 +22,6 @@ class DetailBacaanPage extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            // Header Gambar dan Tombol Kembali
             Stack(
               children: [
                 Container(
@@ -32,7 +34,13 @@ class DetailBacaanPage extends StatelessWidget {
                   left: 16,
                   child: IconButton(
                     icon: const Icon(Icons.arrow_back),
-                    onPressed: () => Navigator.pop(context),
+                    onPressed: () {
+                      if (onBack != null) {
+                        onBack!(); // Navigasi balik ke BacaanPage dengan BottomNavigationBar
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
                   ),
                 ),
                 Positioned(
@@ -49,7 +57,7 @@ class DetailBacaanPage extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(10),
                     child: Image.asset(
-                      'assets/SantriCantikIncaranGusAL.png',
+                      gambar,
                       width: 120,
                       height: 160,
                       fit: BoxFit.cover,
@@ -58,10 +66,7 @@ class DetailBacaanPage extends StatelessWidget {
                 ),
               ],
             ),
-
             const SizedBox(height: 8),
-
-            // Judul
             Text(
               judul,
               textAlign: TextAlign.center,
@@ -70,10 +75,7 @@ class DetailBacaanPage extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-
             const SizedBox(height: 12),
-
-            // Sinopsis & Deskripsi Box
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Container(
@@ -88,7 +90,6 @@ class DetailBacaanPage extends StatelessWidget {
                   ),
                 ),
                 child: Column(
-                  //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
                       'Sinopsis:',
@@ -99,14 +100,12 @@ class DetailBacaanPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 8),
                     const Text(
-                    '"Ya Allah, jika dia gadis yang kau kirimkan untuk menjadi jodohku, maka pertemukanlah aku dengannya. '
-                    'Dan jika dia hanya pemanis dalam mimpiku, maka hilangkanlah dia dalam mimpiku, karena kehadirannya sangat mengganggu perasaanku."' 
-                    'Mendapatkan mimpi bertemu seorang gadis selama tiga tahun berturut - turut, Gus Alraz Al - Ghifari Maulana dibuat dilema akan kehadiran gadis tersebut, karena selama ini Gus Alraz atau yang sering di sapa Gus Al itu tak pernah sekalipun bertemu dengannya ....'
-                    '"Abah, tiga tahun belakangan ini, Al selalu mendapatkan mimpi bertemu seorang gadis, tapi Al tidak mengenalnya, Abah. Apa maksud dari mimpi itu Abah?"  Tanya Gus Al. '
-                    '"Kamu sudah Shalat Istikharah Le ?" Tanya Abah "Sudah Abah, sejak diberi mimpi, Al langsung melaksanakan Shalat Istikharah. Hasilnya tetap sama, dia selalu datang di dalam mimpi Al," '
-                    '"In Sya Allah, dia adalah jodohmu Le," jawab Abah Zainuddin tersenyum. '
-                    '"Tapi Al tidak mengenalnya Abah dan tidak pernah bertemu sebelumnya , "'
-                    '"In Sya Allah, kalian akan dipertemukan dalam waktu dekat", Gus Al berharap apa yang dikatakan oleh sang Abah akan benar - benar terjadi. ',
+                    'Kinanti, wanita ini nyaris gila akibat pernikahannya yang batal digelar. '
+                    'Sebenarnya tidak batal, hanya saja disaat hari pernikahan tiba, ternyata pengantin perempuan '
+                    'yang seharusnya bersanding dengan Wira adalah Kinanti diganti dengan Citra, saudara sepupu Kinanti. '
+                    'Gunjingan dan hinaan yang dilontarkan kepada keluarga Kinanti membuat sang bapak yang bernama Hasan '
+                    'jatuh sakit kemudian meninggal dunia. Dalam keterpurukannya, seseorang datang menghibur Kinanti, '
+                    'bukan dari golongan manusia, tapi jin yang bernama Lindu Ajisangkanan.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                       fontSize: 14,
@@ -114,10 +113,7 @@ class DetailBacaanPage extends StatelessWidget {
                       color: Colors.black87,
                     ),
                   ),
-                    const SizedBox(height: 4),
                     const SizedBox(height: 16),
-
-                    // Konten Button
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Colors.grey),
@@ -126,7 +122,12 @@ class DetailBacaanPage extends StatelessWidget {
                         ),
                       ),
                       onPressed: () {
-                        // Navigasi ke halaman konten
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Bab01Page6(),
+                          ),
+                        );
                       },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -140,7 +141,7 @@ class DetailBacaanPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '100 Bab >',
+                            '150 Bab >',
                             style: TextStyle(color: Colors.black),
                           ),
                         ],
@@ -150,21 +151,14 @@ class DetailBacaanPage extends StatelessWidget {
                 ),
               ),
             ),
-
-            const SizedBox(height: 16),
-
             const Spacer(),
-
-            // Tombol Bawah
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
               child: Row(
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {
-                        // Aksi lanjut baca
-                      },
+                      onPressed: () {},
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF003D82),
                         shape: RoundedRectangleBorder(
@@ -182,9 +176,7 @@ class DetailBacaanPage extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   IconButton(
-                    onPressed: () {
-                      // Aksi favorite
-                    },
+                    onPressed: () {},
                     icon: const Icon(Icons.favorite_border),
                   )
                 ],
