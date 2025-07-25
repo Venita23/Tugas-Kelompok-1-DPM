@@ -1,6 +1,9 @@
 // detail_bacaan_page2.dart
 import 'package:flutter/material.dart';
 import 'main.dart'; // agar bisa akses NavigationHandler.of(context)
+import 'bab01_page3.dart'; // Tambahkan ini
+import 'isibab_page3.dart';
+
 
 class DetailBacaanPage2 extends StatelessWidget {
   final String judul;
@@ -97,7 +100,14 @@ class DetailBacaanPage2 extends StatelessWidget {
                         side: const BorderSide(color: Colors.grey),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const Bab01Page3(), // Ganti jika halaman lain
+      ),
+    );
+  },
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: const [
@@ -119,7 +129,16 @@ class DetailBacaanPage2 extends StatelessWidget {
                 children: [
                   Expanded(
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => const IsibabPage3(bab: 'Bab 1'),
+    ),
+  );
+},
+
+
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF003D82),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

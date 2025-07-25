@@ -9,7 +9,9 @@ import 'genre_page.dart';
 import 'bacaan_page.dart';
 import 'home_controller.dart';
 import 'detail_bacaan_page.dart';     
-import 'detail_bacaan_page2.dart';    
+import 'detail_bacaan_page2.dart'; 
+import 'bab01_page3.dart'; // tambahkan ini
+
 
 void main() {
   runApp(const MyApp());
@@ -57,6 +59,9 @@ class _NavigationHandlerState extends State<NavigationHandler> {
   @override
   Widget build(BuildContext context) {
     switch (_currentScreen) {
+      case 'bab03':
+  return const Bab01Page3();
+
       case 'login':
         return LoginPage(
           onLogin: () => goTo('main_home'),
@@ -123,6 +128,8 @@ class _NavigationHandlerState extends State<NavigationHandler> {
 
       default:
         return const Center(child: Text('Unknown screen'));
+
+      
     }
   }
 }

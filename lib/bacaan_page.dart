@@ -16,14 +16,14 @@ class _BacaanPageState extends State<BacaanPage> with TickerProviderStateMixin {
     {
       "kategori": "Hari ini",
       "items": [
-        {
+        { 
           "image": "assets/KinantiAsmaraDuaDunia.jpeg",
           "judul": "Kinanti Asmara Dua Dunia",
           "penulis": "Vir & Sam",
           "bab": "129/150",
           "update": "Tiap Hari",
           "info": "1 Bab belum dibaca",
-          "deskripsi": "Kinanti nyaris gila karena batal menikah. Ia kemudian dihibur oleh jin Lindu Ajisangkana."
+          "deskripsi": "Kinanti, wanita ini nyaris gila akibat pernikahannya yang batal di gelar ebenarnya tidak batal, hanya saja disaat hari pernikahan tiba, ternyata pengantin perempuan yang seharusnya bersanding dengan Wira adalah Kinanti diganti dengan Citra, saudara sepupu Kinanti. Gunjingan dan hinaan yang dilontarkan kepada keluarga Kinanti membuat sang bapak yang bernama Hasan jatuh sakit kemudian meninggal dunia. Dalam keterpurukannya, seseorang datang menghibur Kinanti, bukan dari golongan manusia, tapi jin yang bernama Lindu Ajisangkana."
         },
         {
           "image": "assets/TheWorldOfImmortality.png",
