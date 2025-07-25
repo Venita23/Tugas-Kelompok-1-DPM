@@ -1,13 +1,13 @@
 // detail_bacaan_page2.dart
 import 'package:flutter/material.dart';
-import 'main.dart'; // ← agar bisa akses NavigationHandler.of(context)
+import 'main.dart'; // agar bisa akses NavigationHandler.of(context)
 
-class DetailBacaanPage extends StatelessWidget {
+class DetailBacaanPage2 extends StatelessWidget {
   final String judul;
   final String gambar;
   final String sinopsis;
 
-  const DetailBacaanPage({
+  const DetailBacaanPage2({
     super.key,
     required this.judul,
     required this.gambar,
@@ -35,7 +35,7 @@ class DetailBacaanPage extends StatelessWidget {
                     icon: const Icon(Icons.arrow_back),
                     onPressed: () {
                       final handler = NavigationHandler.of(context);
-                      handler?.goTo('main', tabIndex: 2); // kembali ke Genre
+                      handler?.goTo('main', tabIndex: 2); 
                     },
                   ),
                 ),

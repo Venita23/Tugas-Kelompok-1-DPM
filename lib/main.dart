@@ -8,7 +8,8 @@ import 'profile_page.dart';
 import 'genre_page.dart';
 import 'bacaan_page.dart';
 import 'home_controller.dart';
-import 'detail_bacaan_page2.dart';
+import 'detail_bacaan_page.dart';     
+import 'detail_bacaan_page2.dart';    
 
 void main() {
   runApp(const MyApp());
@@ -80,19 +81,38 @@ class _NavigationHandlerState extends State<NavigationHandler> {
       case 'main_home':
         return MainScreen(
           initialIndex: 1,
-          onOpenDetail: (bacaan) => goTo('detail', bacaan: bacaan),
+          onOpenDetail: (bacaan, {required int tabIndex}) => goTo(
+            tabIndex == 0 ? 'detail_bacaan' : 'detail_genre',
+            bacaan: bacaan,
+          ),
         );
 
       case 'main':
         return MainScreen(
           initialIndex: _tabIndex,
-          onOpenDetail: (bacaan) => goTo('detail', bacaan: bacaan),
+          onOpenDetail: (bacaan, {required int tabIndex}) => goTo(
+            tabIndex == 0 ? 'detail_bacaan' : 'detail_genre',
+            bacaan: bacaan,
+          ),
         );
 
-      case 'detail':
+      case 'detail_bacaan':
         final bacaan = _selectedBacaan;
         if (bacaan != null) {
           return DetailBacaanPage(
+            judul: bacaan['judul'] ?? 'Judul tidak tersedia',
+            gambar: bacaan['image'] ?? 'assets/default.png',
+            sinopsis: bacaan['deskripsi'] ?? 'Deskripsi tidak tersedia',
+            tabIndex: 0, // kembali ke BacaanPage
+          );
+        } else {
+          return const Center(child: Text("Bacaan tidak ditemukan."));
+        }
+
+      case 'detail_genre':
+        final bacaan = _selectedBacaan;
+        if (bacaan != null) {
+          return DetailBacaanPage2(
             judul: bacaan['judul'] ?? 'Judul tidak tersedia',
             gambar: bacaan['image'] ?? 'assets/default.png',
             sinopsis: bacaan['deskripsi'] ?? 'Deskripsi tidak tersedia',
@@ -109,7 +129,7 @@ class _NavigationHandlerState extends State<NavigationHandler> {
 
 class MainScreen extends StatefulWidget {
   final int initialIndex;
-  final Function(Map<String, dynamic>)? onOpenDetail;
+  final Function(Map<String, dynamic> bacaan, {required int tabIndex})? onOpenDetail;
 
   const MainScreen({super.key, this.initialIndex = 1, this.onOpenDetail});
 
@@ -142,7 +162,11 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     final List<Widget> pages = [
-      BacaanPage(onOpenDetail: widget.onOpenDetail),
+      BacaanPage(
+        onOpenDetail: (bacaan) {
+          widget.onOpenDetail?.call(bacaan, tabIndex: 0);
+        },
+      ),
       HomePage(
         searchController: homeController.searchController,
         selectedGenre: homeController.selectedGenre,
@@ -155,7 +179,11 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
       ),
-      GenrePage(onOpenDetail: widget.onOpenDetail),
+      GenrePage(
+        onOpenDetail: (bacaan) {
+          widget.onOpenDetail?.call(bacaan, tabIndex: 2);
+        },
+      ),
       ProfilePage(
         onLogout: () {
           final handlerState = NavigationHandler.of(context);
